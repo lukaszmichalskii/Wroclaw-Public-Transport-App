@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wpta.wroclawpublictransportapp.AppController">
+<BorderPane fx:id="appInterface" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wpta.wroclawpublictransportapp.controller.AppController">
    <top>
       <AnchorPane prefHeight="100.0" prefWidth="1280.0" style="-fx-background-color: #2b2b2b;" BorderPane.alignment="CENTER">
          <children>
