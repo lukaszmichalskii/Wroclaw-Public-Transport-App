@@ -49,6 +49,9 @@ public class AppController implements Initializable {
         stage.close();
     }
 
+    /**
+     * Search option for user (provide location in search text field)
+     */
     @FXML
     private void search() {
         locationSearch.search(searchTextField.getText());
