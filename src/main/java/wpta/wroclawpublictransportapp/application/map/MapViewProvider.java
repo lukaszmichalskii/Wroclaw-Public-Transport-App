@@ -1,4 +1,4 @@
-package wpta.wroclawpublictransportapp.application.mapviewprovider;
+package wpta.wroclawpublictransportapp.application.map;
 
 import com.teamdev.jxbrowser.browser.Browser;
 import com.teamdev.jxbrowser.view.javafx.BrowserView;

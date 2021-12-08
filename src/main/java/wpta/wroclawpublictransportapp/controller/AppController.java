@@ -5,10 +5,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import wpta.wroclawpublictransportapp.application.alert.AlertManager;
-import wpta.wroclawpublictransportapp.application.mapviewprovider.MapViewProvider;
+import wpta.wroclawpublictransportapp.application.map.LocationSearch;
+import wpta.wroclawpublictransportapp.application.map.MapViewProvider;
 import wpta.wroclawpublictransportapp.controller.helpers.initialization.ComboBoxInitializer;
 import wpta.wroclawpublictransportapp.controller.helpers.initialization.LineNumberInitialization;
 import wpta.wroclawpublictransportapp.controller.helpers.initialization.TransportTypeChoiceInitialization;
@@ -28,12 +30,17 @@ public class AppController implements Initializable {
     private Button quitButton;
 
     @FXML
+    private TextField searchTextField;
+
+    @FXML
     private ComboBox<String> transportTypeChoice;
 
     private final MapViewProvider mapViewProvider;
+    private final LocationSearch locationSearch;
 
     public AppController() {
         mapViewProvider = new MapViewProvider();
+        locationSearch = new LocationSearch(mapViewProvider.getBrowser());
     }
 
     @FXML
@@ -44,7 +51,7 @@ public class AppController implements Initializable {
 
     @FXML
     private void search() {
-
+        locationSearch.search(searchTextField.getText());
     }
 
     @FXML
