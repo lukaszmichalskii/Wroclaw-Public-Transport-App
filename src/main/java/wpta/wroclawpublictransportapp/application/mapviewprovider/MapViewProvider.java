@@ -6,13 +6,20 @@ import wpta.wroclawpublictransportapp.application.engine.AppEngine;
 
 import java.io.File;
 
+/**
+ * Class responsible for provide mapView from Google Map sample map.
+ */
 public class MapViewProvider {
     private final String HTMLMapViewFilepath;
     private final Browser browser;
 
     public MapViewProvider() {
         this.browser = AppEngine.getEngine().newBrowser();
-        this.HTMLMapViewFilepath = "D:\\PWr\\Jezyki programowania\\laboratorium\\WroclawPublicTransportApp\\src\\map\\map.html";
+        this.HTMLMapViewFilepath = "D:\\PWr\\Jezyki programowania\\laboratorium\\WroclawPublicTransportApp\\map\\map.html";
+    }
+
+    public Browser getBrowser() {
+        return browser;
     }
 
     public BrowserView provideMap() {
