@@ -3,6 +3,8 @@ module wpta.wroclawpublictransportapp {
     requires javafx.fxml;
     requires javafx.web;
 
+    requires com.jfoenix;
+
     requires jxbrowser;
     requires jxbrowser.javafx;
     requires com.dlsc.formsfx;

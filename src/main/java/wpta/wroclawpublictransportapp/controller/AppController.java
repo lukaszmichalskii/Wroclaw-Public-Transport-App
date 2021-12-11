@@ -14,6 +14,8 @@ import wpta.wroclawpublictransportapp.application.map.MapViewProvider;
 import wpta.wroclawpublictransportapp.controller.helpers.initialization.ComboBoxInitializer;
 import wpta.wroclawpublictransportapp.controller.helpers.initialization.LineNumberInitialization;
 import wpta.wroclawpublictransportapp.controller.helpers.initialization.TransportTypeChoiceInitialization;
+import wpta.wroclawpublictransportapp.controller.helpers.loader.BorderPaneLocation;
+import wpta.wroclawpublictransportapp.controller.helpers.loader.SectionLoader;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -64,6 +66,7 @@ public class AppController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        SectionLoader.load("gui/request-form.fxml", appInterface, BorderPaneLocation.LEFT);
         initMap();
         initTransportTypeOptions();
     }

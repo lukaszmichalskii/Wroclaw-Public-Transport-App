@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="300.0" style="-fx-background-color: #2b2b2b;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wpta.wroclawpublictransportapp.controller.RequestController">
+   <children>
+      <AnchorPane maxHeight="30.0" prefHeight="30.0" prefWidth="300.0">
+         <children>
+            <Label layoutX="124.0" layoutY="-2.0" prefHeight="30.0" text="Buses" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <VBox alignment="CENTER_LEFT" layoutY="32.0" prefHeight="332.0" prefWidth="60.0" spacing="8.0">
+         <children>
+            <JFXCheckBox fx:id="A" text="A" textFill="WHITE" />
+            <JFXCheckBox fx:id="B100" text="100" textFill="WHITE" />
+            <JFXCheckBox fx:id="B106" text="106" textFill="WHITE" />
+            <JFXCheckBox fx:id="B111" text="111" textFill="WHITE" />
+            <JFXCheckBox fx:id="B116" text="116" textFill="WHITE" />
+            <JFXCheckBox fx:id="B122" text="122" textFill="WHITE" />
+            <JFXCheckBox fx:id="B128" text="128" textFill="WHITE" />
+            <JFXCheckBox fx:id="B133" text="133" textFill="WHITE" />
+            <JFXCheckBox fx:id="B143" text="143" textFill="WHITE" />
+            <JFXCheckBox fx:id="B148" text="148" textFill="WHITE" />
+            <JFXCheckBox fx:id="B204" text="240" textFill="WHITE" />
+            <JFXCheckBox fx:id="B245" text="245" textFill="WHITE" />
+            <JFXCheckBox fx:id="B250" text="250" textFill="WHITE" />
+            <JFXCheckBox fx:id="B259" text="259" textFill="WHITE" />
+            <JFXCheckBox fx:id="B703" text="703" textFill="WHITE" />
+         </children>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </VBox>
+      <AnchorPane layoutY="435.0" maxHeight="30.0" prefHeight="30.0" prefWidth="300.0">
+         <children>
+            <Label layoutX="124.0" layoutY="-2.0" prefHeight="30.0" text="Trams" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <VBox layoutY="480.0" prefHeight="93.0" prefWidth="60.0" spacing="8.0">
+         <children>
+            <JFXCheckBox fx:id="T1" text="1" textFill="WHITE" />
+            <JFXCheckBox fx:id="T6" text="6" textFill="WHITE" />
+            <JFXCheckBox fx:id="T11" text="11" textFill="WHITE" />
+            <JFXCheckBox fx:id="T23" text="23" textFill="WHITE" />
+         </children>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </VBox>
+      <VBox layoutX="60.0" layoutY="480.0" prefHeight="93.0" prefWidth="60.0" spacing="8.0">
+         <children>
+            <JFXCheckBox fx:id="T2" text="2" textFill="WHITE" />
+            <JFXCheckBox fx:id="T7" text="7" textFill="WHITE" />
+            <JFXCheckBox fx:id="T15" text="15" textFill="WHITE" />
+            <JFXCheckBox fx:id="T31" text="31" textFill="WHITE" />
+         </children>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </VBox>
+      <VBox layoutX="120.0" layoutY="480.0" prefHeight="93.0" prefWidth="60.0" spacing="8.0">
+         <children>
+            <JFXCheckBox fx:id="T3" text="3" textFill="WHITE" />
+            <JFXCheckBox fx:id="T8" text="8" textFill="WHITE" />
+            <JFXCheckBox fx:id="T16" text="16" textFill="WHITE" />
+            <JFXCheckBox fx:id="T33" text="33" textFill="WHITE" />
+         </children>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </VBox>
+      <VBox layoutX="180.0" layoutY="480.0" prefHeight="93.0" prefWidth="60.0" spacing="8.0">
+         <children>
+            <JFXCheckBox fx:id="T4" text="4" textFill="WHITE" />
+            <JFXCheckBox fx:id="T9" text="9" textFill="WHITE" />
+            <JFXCheckBox fx:id="T17" text="17" textFill="WHITE" />
+            <JFXCheckBox fx:id="T70" text="70" textFill="WHITE" />
+         </children>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </VBox>
+      <VBox layoutX="240.0" layoutY="480.0" prefHeight="93.0" prefWidth="60.0" spacing="8.0">
+         <children>
+            <JFXCheckBox fx:id="T5" text="5" textFill="WHITE" />
+            <JFXCheckBox fx:id="T10" text="10" textFill="WHITE" />
+            <JFXCheckBox fx:id="T20" text="20" textFill="WHITE" />
+            <JFXCheckBox fx:id="T74" text="74" textFill="WHITE" />
+         </children>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="CENTER_LEFT" layoutX="60.0" layoutY="30.0" prefHeight="332.0" prefWidth="60.0" spacing="8.0">
+         <children>
+            <JFXCheckBox fx:id="C" text="C" textFill="WHITE" />
+            <JFXCheckBox fx:id="B101" text="101" textFill="WHITE" />
+            <JFXCheckBox fx:id="B107" text="107" textFill="WHITE" />
+            <JFXCheckBox fx:id="B112" text="112" textFill="WHITE" />
+            <JFXCheckBox fx:id="B118" text="118" textFill="WHITE" />
+            <JFXCheckBox fx:id="B124" text="124" textFill="WHITE" />
+            <JFXCheckBox fx:id="B129" text="129" textFill="WHITE" />
+            <JFXCheckBox fx:id="B134" text="134" textFill="WHITE" />
+            <JFXCheckBox fx:id="B144" text="144" textFill="WHITE" />
+            <JFXCheckBox fx:id="B149" text="149" textFill="WHITE" />
+            <JFXCheckBox fx:id="B241" text="241" textFill="WHITE" />
+            <JFXCheckBox fx:id="B246" text="246" textFill="WHITE" />
+            <JFXCheckBox fx:id="B251" text="251" textFill="WHITE" />
+            <JFXCheckBox fx:id="B315" text="315" textFill="WHITE" />
+            <JFXCheckBox fx:id="B709" text="709" textFill="WHITE" />
+         </children>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="CENTER_LEFT" layoutX="120.0" layoutY="32.0" prefHeight="332.0" prefWidth="60.0" spacing="8.0">
+         <children>
+            <JFXCheckBox fx:id="D" text="D" textFill="WHITE" />
+            <JFXCheckBox fx:id="B103" text="103" textFill="WHITE" />
+            <JFXCheckBox fx:id="B108" text="108" textFill="WHITE" />
+            <JFXCheckBox fx:id="B113" text="113" textFill="WHITE" />
+            <JFXCheckBox fx:id="B119" text="119" textFill="WHITE" />
+            <JFXCheckBox fx:id="B125" text="125" textFill="WHITE" />
+            <JFXCheckBox fx:id="B130" text="130" textFill="WHITE" />
+            <JFXCheckBox fx:id="B136" text="136" textFill="WHITE" />
+            <JFXCheckBox fx:id="B145" text="145" textFill="WHITE" />
+            <JFXCheckBox fx:id="B150" text="150" textFill="WHITE" />
+            <JFXCheckBox fx:id="B242" text="242" textFill="WHITE" />
+            <JFXCheckBox fx:id="B247" text="247" textFill="WHITE" />
+            <JFXCheckBox fx:id="B253" text="253" textFill="WHITE" />
+            <JFXCheckBox fx:id="B319" text="319" textFill="WHITE" />
+            <JFXCheckBox fx:id="B731" text="731" textFill="WHITE" />
+         </children>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="CENTER_LEFT" layoutX="180.0" layoutY="32.0" prefHeight="332.0" prefWidth="60.0" spacing="8.0">
+         <children>
+            <JFXCheckBox fx:id="K" text="K" textFill="WHITE" />
+            <JFXCheckBox fx:id="B104" text="104" textFill="WHITE" />
+            <JFXCheckBox fx:id="B109" text="109" textFill="WHITE" />
+            <JFXCheckBox fx:id="B114" text="114" textFill="WHITE" />
+            <JFXCheckBox fx:id="B120" text="120" textFill="WHITE" />
+            <JFXCheckBox fx:id="B126" text="126" textFill="WHITE" />
+            <JFXCheckBox fx:id="B131" text="131" textFill="WHITE" />
+            <JFXCheckBox fx:id="B140" text="140" textFill="WHITE" />
+            <JFXCheckBox fx:id="B146" text="146" textFill="WHITE" />
+            <JFXCheckBox fx:id="B151" text="151" textFill="WHITE" />
+            <JFXCheckBox fx:id="B243" text="243" textFill="WHITE" />
+            <JFXCheckBox fx:id="B248" text="248" textFill="WHITE" />
+            <JFXCheckBox fx:id="B255" text="255" textFill="WHITE" />
+            <JFXCheckBox fx:id="B602" text="602" textFill="WHITE" />
+         </children>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="CENTER_LEFT" layoutX="240.0" layoutY="32.0" prefHeight="332.0" prefWidth="60.0" spacing="8.0">
+         <children>
+            <JFXCheckBox fx:id="N" text="N" textFill="WHITE" />
+            <JFXCheckBox fx:id="B105" text="105" textFill="WHITE" />
+            <JFXCheckBox fx:id="B110" text="110" textFill="WHITE" />
+            <JFXCheckBox fx:id="B115" text="115" textFill="WHITE" />
+            <JFXCheckBox fx:id="B121" text="121" textFill="WHITE" />
+            <JFXCheckBox fx:id="B127" text="127" textFill="WHITE" />
+            <JFXCheckBox fx:id="B132" text="132" textFill="WHITE" />
+            <JFXCheckBox fx:id="B142" text="142" textFill="WHITE" />
+            <JFXCheckBox fx:id="B147" text="147" textFill="WHITE" />
+            <JFXCheckBox fx:id="B206" text="206" textFill="WHITE" />
+            <JFXCheckBox fx:id="B244" text="244" textFill="WHITE" />
+            <JFXCheckBox fx:id="B249" text="249" textFill="WHITE" />
+            <JFXCheckBox fx:id="B257" text="257" textFill="WHITE" />
+            <JFXCheckBox fx:id="B607" text="607" textFill="WHITE" />
+         </children>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </VBox>
+      <Button fx:id="runButton" layoutX="103.0" layoutY="588.0" mnemonicParsing="false" styleClass="options" stylesheets="@../styles/styles.css" text="Run" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/run.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
