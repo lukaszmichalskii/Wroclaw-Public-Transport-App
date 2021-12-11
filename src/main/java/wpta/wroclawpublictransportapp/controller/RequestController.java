@@ -1,290 +1,53 @@
 package wpta.wroclawpublictransportapp.controller;
 
 import com.jfoenix.controls.JFXCheckBox;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-
-public class RequestController {
-
-    @FXML
-    private Button runButton;
-
-    @FXML
-    private JFXCheckBox A;
-
-    @FXML
-    private JFXCheckBox B100;
-
-    @FXML
-    private JFXCheckBox B101;
-
-    @FXML
-    private JFXCheckBox B103;
-
-    @FXML
-    private JFXCheckBox B104;
-
-    @FXML
-    private JFXCheckBox B105;
-
-    @FXML
-    private JFXCheckBox B106;
-
-    @FXML
-    private JFXCheckBox B107;
-
-    @FXML
-    private JFXCheckBox B108;
-
-    @FXML
-    private JFXCheckBox B109;
-
-    @FXML
-    private JFXCheckBox B110;
-
-    @FXML
-    private JFXCheckBox B111;
-
-    @FXML
-    private JFXCheckBox B112;
-
-    @FXML
-    private JFXCheckBox B113;
-
-    @FXML
-    private JFXCheckBox B114;
-
-    @FXML
-    private JFXCheckBox B115;
-
-    @FXML
-    private JFXCheckBox B116;
-
-    @FXML
-    private JFXCheckBox B118;
-
-    @FXML
-    private JFXCheckBox B119;
-
-    @FXML
-    private JFXCheckBox B120;
-
-    @FXML
-    private JFXCheckBox B121;
-
-    @FXML
-    private JFXCheckBox B122;
-
-    @FXML
-    private JFXCheckBox B124;
-
-    @FXML
-    private JFXCheckBox B125;
-
-    @FXML
-    private JFXCheckBox B126;
-
-    @FXML
-    private JFXCheckBox B127;
-
-    @FXML
-    private JFXCheckBox B128;
-
-    @FXML
-    private JFXCheckBox B129;
-
-    @FXML
-    private JFXCheckBox B130;
-
-    @FXML
-    private JFXCheckBox B131;
-
-    @FXML
-    private JFXCheckBox B132;
-
-    @FXML
-    private JFXCheckBox B133;
-
-    @FXML
-    private JFXCheckBox B134;
-
-    @FXML
-    private JFXCheckBox B136;
-
-    @FXML
-    private JFXCheckBox B140;
-
-    @FXML
-    private JFXCheckBox B142;
-
-    @FXML
-    private JFXCheckBox B143;
-
-    @FXML
-    private JFXCheckBox B144;
-
-    @FXML
-    private JFXCheckBox B145;
-
-    @FXML
-    private JFXCheckBox B146;
-
-    @FXML
-    private JFXCheckBox B147;
-
-    @FXML
-    private JFXCheckBox B148;
-
-    @FXML
-    private JFXCheckBox B149;
-
-    @FXML
-    private JFXCheckBox B150;
-
-    @FXML
-    private JFXCheckBox B151;
-
-    @FXML
-    private JFXCheckBox B204;
-
-    @FXML
-    private JFXCheckBox B206;
-
-    @FXML
-    private JFXCheckBox B241;
-
-    @FXML
-    private JFXCheckBox B242;
-
-    @FXML
-    private JFXCheckBox B243;
-
-    @FXML
-    private JFXCheckBox B244;
-
-    @FXML
-    private JFXCheckBox B245;
-
-    @FXML
-    private JFXCheckBox B246;
-
-    @FXML
-    private JFXCheckBox B247;
-
-    @FXML
-    private JFXCheckBox B248;
-
-    @FXML
-    private JFXCheckBox B249;
-
-    @FXML
-    private JFXCheckBox B250;
-
-    @FXML
-    private JFXCheckBox B251;
-
-    @FXML
-    private JFXCheckBox B253;
-
-    @FXML
-    private JFXCheckBox B255;
-
-    @FXML
-    private JFXCheckBox B257;
-
-    @FXML
-    private JFXCheckBox B259;
-
-    @FXML
-    private JFXCheckBox B315;
-
-    @FXML
-    private JFXCheckBox B319;
-
-    @FXML
-    private JFXCheckBox B602;
-
-    @FXML
-    private JFXCheckBox B607;
-
-    @FXML
-    private JFXCheckBox B703;
-
-    @FXML
-    private JFXCheckBox B709;
-
-    @FXML
-    private JFXCheckBox B731;
-
-    @FXML
-    private JFXCheckBox C;
-
-    @FXML
-    private JFXCheckBox D;
-
-    @FXML
-    private JFXCheckBox K;
-
-    @FXML
-    private JFXCheckBox N;
-
-    @FXML
-    private JFXCheckBox T1;
-
-    @FXML
-    private JFXCheckBox T10;
-
-    @FXML
-    private JFXCheckBox T11;
-
-    @FXML
-    private JFXCheckBox T15;
-
-    @FXML
-    private JFXCheckBox T16;
-
-    @FXML
-    private JFXCheckBox T17;
-
-    @FXML
-    private JFXCheckBox T2;
-
-    @FXML
-    private JFXCheckBox T20;
-
-    @FXML
-    private JFXCheckBox T23;
-
-    @FXML
-    private JFXCheckBox T3;
-
-    @FXML
-    private JFXCheckBox T31;
-
-    @FXML
-    private JFXCheckBox T33;
-
-    @FXML
-    private JFXCheckBox T4;
-
-    @FXML
-    private JFXCheckBox T5;
-
-    @FXML
-    private JFXCheckBox T6;
-
-    @FXML
-    private JFXCheckBox T7;
-
-    @FXML
-    private JFXCheckBox T70;
-
-    @FXML
-    private JFXCheckBox T74;
-
-    @FXML
-    private JFXCheckBox T8;
-
-    @FXML
-    private JFXCheckBox T9;
+import javafx.fxml.Initializable;
+import wpta.wroclawpublictransportapp.application.alert.AlertManager;
+
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+
+public class RequestController implements Initializable {
+
+    // Available buses
+    @FXML
+    private JFXCheckBox A, C, D, K, N, B100, B101, B103, B104, B105, B106, B107, B108, B109, B110, B111, B112, B113,
+            B114, B115, B116, B118, B119, B120, B121, B122, B124, B125, B126, B127, B128, B129, B130, B131, B132, B133,
+            B134, B136, B140, B142, B143, B144, B145, B146, B147, B148, B149, B150, B151, B204, B206, B241, B242, B243,
+            B244,B245, B246, B247, B248, B249, B250, B251, B253, B255, B257, B259, B315, B319, B602, B607, B703, B709, B731;
+
+    // Available trams
+    @FXML
+    private JFXCheckBox T1, T10, T11, T15, T16, T17, T2, T20, T23, T3, T31, T33, T4, T5, T6, T7, T70, T74, T8, T9;
+
+    private ObservableList<JFXCheckBox> trams;
+    private ObservableList<JFXCheckBox> buses;
+
+    @FXML
+    private void sendRequest() {
+        StringBuilder msg = new StringBuilder();
+        for (JFXCheckBox tram: trams) {
+            if (tram.isSelected())
+                msg.append(tram.getText()).append(", ");
+        }
+
+        for (JFXCheckBox bus: buses) {
+            if (bus.isSelected())
+                msg.append(bus.getText()).append(", ");
+        }
+        AlertManager.throwConfirmation("Request has been sent with " + msg + " parameters");
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        trams = FXCollections.observableList(List.of(T1, T10, T11, T15, T16, T17, T2, T20, T23, T3, T31, T33, T4, T5, T6, T7, T70, T74, T8, T9));
+        buses = FXCollections.observableList(List.of(A, C, D, K, N, B100, B101, B103, B104, B105, B106, B107, B108, B109, B110, B111, B112, B113,
+                B114, B115, B116, B118, B119, B120, B121, B122, B124, B125, B126, B127, B128, B129, B130, B131, B132, B133,
+                B134, B136, B140, B142, B143, B144, B145, B146, B147, B148, B149, B150, B151, B204, B206, B241, B242, B243,
+                B244,B245, B246, B247, B248, B249, B250, B251, B253, B255, B257, B259, B315, B319, B602, B607, B703, B709, B731));
+    }
 }
