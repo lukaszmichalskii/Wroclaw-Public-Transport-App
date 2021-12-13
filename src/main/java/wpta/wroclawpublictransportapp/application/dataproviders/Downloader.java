@@ -1,5 +1,7 @@
 package wpta.wroclawpublictransportapp.application.dataproviders;
 
+import wpta.wroclawpublictransportapp.application.dataorganizers.JSONParser;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,10 +13,12 @@ public class Downloader {
 
     private final URL url;
     private final String URLParameters;
+    private final JSONParser jsonParser;
 
     public Downloader(URL url, String URLParameters) {
         this.url = url;
         this.URLParameters = URLParameters;
+        jsonParser = new JSONParser();
     }
 
     public void download() throws IOException {
@@ -27,13 +31,13 @@ public class Downloader {
         osWriter.write(URLParameters);
         osWriter.flush();
 
-        String line;
-        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        String response;
+        BufferedReader bfReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
-        while ((line = reader.readLine()) != null) {
-            System.out.println(line);
+        while ((response = bfReader.readLine()) != null) {
+            System.out.println(jsonParser.parseJSON(response));
         }
         osWriter.close();
-        reader.close();
+        bfReader.close();
     }
 }
