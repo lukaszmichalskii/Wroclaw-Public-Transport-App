@@ -33,6 +33,7 @@ public class LocationDataProvider {
             AlertManager.throwError("Please select desired transport.");
         } catch (Exception e) {
             AlertManager.throwError("Something went wrong. Check your selections.");
+            e.printStackTrace();
         }
     }
 }

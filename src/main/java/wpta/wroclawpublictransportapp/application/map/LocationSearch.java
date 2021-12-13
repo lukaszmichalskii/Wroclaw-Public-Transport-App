@@ -25,6 +25,5 @@ public class LocationSearch {
             searchElement.click();
         } else
             AlertManager.throwError("Empty location, please provide desired address");
-
     }
 }

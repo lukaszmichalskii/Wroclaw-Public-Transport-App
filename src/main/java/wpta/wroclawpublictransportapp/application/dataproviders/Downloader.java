@@ -1,5 +1,8 @@
 package wpta.wroclawpublictransportapp.application.dataproviders;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import wpta.wroclawpublictransportapp.application.dataorganizers.GeoJSONTransformer;
 import wpta.wroclawpublictransportapp.application.dataorganizers.JSONParser;
 
 import java.io.BufferedReader;
@@ -14,11 +17,13 @@ public class Downloader {
     private final URL url;
     private final String URLParameters;
     private final JSONParser jsonParser;
+    private final GeoJSONTransformer geoJSONTransformer;
 
     public Downloader(URL url, String URLParameters) {
         this.url = url;
         this.URLParameters = URLParameters;
         jsonParser = new JSONParser();
+        geoJSONTransformer = new GeoJSONTransformer();
     }
 
     public void download() throws IOException {
@@ -33,10 +38,13 @@ public class Downloader {
 
         String response;
         BufferedReader bfReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        JSONArray locations;
 
         while ((response = bfReader.readLine()) != null) {
-            System.out.println(jsonParser.parseJSON(response));
+            locations = jsonParser.parseJSON(response);
+            JSONObject locationsInGeoJSONForm = geoJSONTransformer.transformJSONtoGeoJSON(locations);
         }
+
         osWriter.close();
         bfReader.close();
     }
