@@ -6,10 +6,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import wpta.wroclawpublictransportapp.application.alert.AlertManager;
+import wpta.wroclawpublictransportapp.application.dataproviders.LocationDataProvider;
 
 import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class RequestController implements Initializable {
 
@@ -26,20 +26,36 @@ public class RequestController implements Initializable {
 
     private ObservableList<JFXCheckBox> trams;
     private ObservableList<JFXCheckBox> buses;
+    private final Map<String, List<String>> parameters;
+
+    public RequestController() {
+        parameters = new HashMap<>();
+        parameters.put("tram", new ArrayList<>());
+        parameters.put("bus", new ArrayList<>());
+    }
 
     @FXML
     private void sendRequest() {
         StringBuilder msg = new StringBuilder();
+        parameters.get("tram").clear();
+        parameters.get("bus").clear();
+
         for (JFXCheckBox tram: trams) {
-            if (tram.isSelected())
+            if (tram.isSelected()) {
                 msg.append(tram.getText()).append(", ");
+                parameters.get("tram").add(tram.getText());
+            }
         }
 
         for (JFXCheckBox bus: buses) {
-            if (bus.isSelected())
+            if (bus.isSelected()) {
                 msg.append(bus.getText()).append(", ");
+                parameters.get("bus").add(bus.getText());
+            }
         }
-        AlertManager.throwConfirmation("Request has been sent with " + msg + " parameters");
+        AlertManager.throwConfirmation("Request has been sent with " + msg + " parameters\n" + parameters);
+        LocationDataProvider locationDataProvider = new LocationDataProvider();
+        locationDataProvider.sendRequest(parameters);
     }
 
     @Override
