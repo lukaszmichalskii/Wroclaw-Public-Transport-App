@@ -19,7 +19,7 @@ public class URLRequestEncoder {
         String busesURLRequest = encodeBusURLRequest(parameters.get("bus"));
         String tramsURLRequest = encodeTramURLRequest(parameters.get("tram"));
 
-        if (busesURLRequest == null && tramsURLRequest == null)
+        if (busesURLRequest.equals("") && tramsURLRequest.equals(""))
             throw new EmptyRequestException("Empty transport selection");
 
         return createURLRequestParameters(busesURLRequest, tramsURLRequest);
@@ -32,7 +32,7 @@ public class URLRequestEncoder {
                 urlTramParameters.append(URLPrefixForTrams).append(tramLine).append("&");
             }
         } else
-            return null;
+            return "";
 
         return urlTramParameters.toString();
     }
@@ -44,7 +44,7 @@ public class URLRequestEncoder {
                 urlBusParameters.append(URLPrefixForBuses).append(busLine).append("&");
             }
         } else
-            return null;
+            return "";
         return urlBusParameters.toString();
     }
 

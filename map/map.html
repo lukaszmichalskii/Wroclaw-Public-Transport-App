@@ -37,54 +37,7 @@
     <input id="submit" type="button" value="Geocode">
 </div>
 <div id="map"></div>
-<script>
-		function initMap() {
-			var map = new google.maps.Map(document.getElementById('map'), {
-				zoom: 13,
-				center: {lat: 51.1078479035455, lng: 17.038266655466643}
-			});
-
-			var geocoder = new google.maps.Geocoder();
-
-			document.getElementById('submit').addEventListener('click', function() {
-				geocodeAddress(geocoder, map);
-			});
-		}
-
-		function loadGeoJsonString() {
-<!--            try {-->
-<!--                map.data.addGeoJson({-->
-<!--                  "type": "Feature",-->
-<!--                  "geometry": {-->
-<!--                    "type": "Point",-->
-<!--                    "coordinates": [17.038266655466643, 51.1078479035455]-->
-<!--                  },-->
-<!--                  "properties": {-->
-<!--                    "name": "Dinagat Islands"-->
-<!--                  }-->
-<!--                });-->
-<!--            } catch (e) {-->
-<!--                alert("Not a GeoJSON file!");-->
-<!--            }-->
-
-<!--            zoom(map);-->
-        }
-
-		function geocodeAddress(geocoder, resultsMap) {
-			var address = document.getElementById('address').value;
-			geocoder.geocode({'address': address}, function(results, status) {
-				if (status === 'OK') {
-					resultsMap.setCenter(results[0].geometry.location);
-					var marker = new google.maps.Marker({
-						map: resultsMap,
-						position: results[0].geometry.location
-					});
-				} else {
-					alert('Geocode was not successful for the following reason: ' + status);
-				}
-			});
-		}
-
+<script src="script.js">
 	</script>
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcIeli3C2LvWhX0Gw-Xcq2Yoqn3HIP3RQ&callback=initMap">

@@ -22,6 +22,7 @@ public class LocationDataProvider {
     public void sendRequest(Map<String, List<String>> parameters) {
         try {
             String URLParameters = urlRequestEncoder.encodeURL(parameters);
+            System.out.println(URLParameters);
             URL url = apiSettings.getApiURLAddress();
             Downloader downloader = new Downloader(url, URLParameters);
             downloader.download();

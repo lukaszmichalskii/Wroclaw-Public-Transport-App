@@ -32,7 +32,7 @@ public class Downloader {
         connection.setDoOutput(true);
 
         OutputStreamWriter osWriter = new OutputStreamWriter(connection.getOutputStream());
-
+        System.out.println(URLParameters);
         osWriter.write(URLParameters);
         osWriter.flush();
 
