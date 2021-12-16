@@ -10,6 +10,7 @@ public class GeoJSONTransformer {
 
     public JSONObject transformJSONtoGeoJSON(JSONArray data) {
         JSONObject featureCollection = new JSONObject();
+        System.out.println(data.toString());
 
         try {
             featureCollection.put("type", "FeatureCollection");
@@ -25,10 +26,10 @@ public class GeoJSONTransformer {
                 BigDecimal lat = (BigDecimal) transport.get("y");
                 JSONArray coord = new JSONArray("["+lat+","+lon+"]");
                 point.put("coordinates", coord);
-                JSONObject population = new JSONObject();
-                population.put("transport", "tmp_id");
+                JSONObject name = new JSONObject();
+                name.put("Name", data.getJSONObject(i).get("name"));
                 JSONObject feature = new JSONObject();
-                feature.put("properties", population);
+                feature.put("properties", name);
                 feature.put("geometry", point);
                 feature.put("type", "Feature");
                 featureList.put(feature);
@@ -37,8 +38,7 @@ public class GeoJSONTransformer {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        System.out.println("JSON="+data);
-        System.out.println("GeoJSONForm="+featureCollection);
+
         return featureCollection;
     }
 }

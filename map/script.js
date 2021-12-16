@@ -4,38 +4,22 @@ function initMap() {
 		center: {lat: 51.1078479035455, lng: 17.038266655466643}
 	});
 
-	map.data.addGeoJson(
-		// {
-		//     "features": [
-		//         {
-		//         "type": "Feature",
-		//         "geometry": {
-		//             "coordinates":[16.978977,51.136314],
-		//             "type":"Point"
-		//             },
-		//         "properties": {
-		//             "population":200
-		//             }
-		//         },
-		//         {
-		//         "type": "Feature",
-		//         "geometry": {
-		//             "coordinates":[16.948153,51.143665],
-		//             "type":"Point"
-		//             },
-		//         "properties": {
-		//             "population":200
-		//             }
-		//         }]
-		//     ,"type":"FeatureCollection"}
-
-	);
-
 	var geocoder = new google.maps.Geocoder();
 
 	document.getElementById('submit').addEventListener('click', function() {
 		geocodeAddress(geocoder, map);
 	});
+
+	document.getElementById('render').addEventListener('click', function () {
+		renderLocations(geocoder, map);
+	})
+}
+
+function renderLocations(geocoder, resultsMap) {
+	var geoJSONStringRepresentation = document.getElementById('geoJSON').value;
+	resultsMap.data.addGeoJson(JSON.parse(geoJSONStringRepresentation));
+	// test locations
+	// resultsMap.data.addGeoJson({"features":[{"geometry":{"coordinates":[17.005518,51.11112],"type":"Point"},"type":"Feature","properties":{"transport":"tmp_id"}},{"geometry":{"coordinates":[17.07346,51.115074],"type":"Point"},"type":"Feature","properties":{"transport":"tmp_id"}},{"geometry":{"coordinates":[17.103502,51.114044],"type":"Point"},"type":"Feature","properties":{"transport":"tmp_id"}},{"geometry":{"coordinates":[17.019949,51.108353],"type":"Point"},"type":"Feature","properties":{"transport":"tmp_id"}},{"geometry":{"coordinates":[17.036953,51.105125],"type":"Point"},"type":"Feature","properties":{"transport":"tmp_id"}},{"geometry":{"coordinates":[16.971334,51.129566],"type":"Point"},"type":"Feature","properties":{"transport":"tmp_id"}},{"geometry":{"coordinates":[17.038548,51.106888],"type":"Point"},"type":"Feature","properties":{"transport":"tmp_id"}},{"geometry":{"coordinates":[17.068865,51.113926],"type":"Point"},"type":"Feature","properties":{"transport":"tmp_id"}},{"geometry":{"coordinates":[16.958519,51.13249],"type":"Point"},"type":"Feature","properties":{"transport":"tmp_id"}},{"geometry":{"coordinates":[16.983587,51.12529],"type":"Point"},"type":"Feature","properties":{"transport":"tmp_id"}}],"type":"FeatureCollection"});
 }
 
 function geocodeAddress(geocoder, resultsMap) {

@@ -16,6 +16,7 @@
             margin: 0;
             padding: 0;
         }
+
         #floating-panel {
             position: absolute;
             top: 0;
@@ -29,14 +30,34 @@
             line-height: 30px;
             padding-left: 10px;
         }
+
+        #render-panel {
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            z-index: 0;
+            background-color: #fff;
+            padding: 5px;
+            border: 1px solid #999;
+            text-align: center;
+            font-family: 'Roboto','sans-serif';
+            line-height: 30px;
+            padding-left: 100px;
+        }
+
     </style>
 </head>
 <body>
 <div id="floating-panel">
-    <input id="address" type="textbox" value="São Paulo, Brasil">
+    <input id="address" type="textbox" value="Rio de Janeiro, Brasil">
     <input id="submit" type="button" value="Geocode">
 </div>
+<div id="render-panel">
+    <input id="geoJSON" type="textbox" value="">
+    <input id="render" type="button" value="Render">
+</div>
 <div id="map"></div>
+
 <script src="script.js">
 	</script>
 <script async defer
