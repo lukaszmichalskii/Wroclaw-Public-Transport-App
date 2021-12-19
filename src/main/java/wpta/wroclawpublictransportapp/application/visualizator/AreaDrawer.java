@@ -6,20 +6,19 @@ import com.teamdev.jxbrowser.dom.Element;
 import com.teamdev.jxbrowser.dom.InputElement;
 import com.teamdev.jxbrowser.frame.Frame;
 
-public class Visualizer {
-
+public class AreaDrawer {
     private final Browser browser;
 
-    public Visualizer(Browser browser) {
+    public AreaDrawer(Browser browser) {
         this.browser = browser;
     }
 
-    public void visualize(String geoJSON) {
+    public void draw(Double radius) {
         Document document = browser.mainFrame().flatMap(Frame::document).get();
-        Element searchElement = document.findElementById("render").get();
+        Element searchElement = document.findElementById("search").get();
 
-        document.findElementById("geoJSON").ifPresent(address ->
-                ((InputElement) address).value(geoJSON));
+        document.findElementById("area").ifPresent(address ->
+                ((InputElement) address).value(String.valueOf(radius)));
 
         searchElement.click();
     }

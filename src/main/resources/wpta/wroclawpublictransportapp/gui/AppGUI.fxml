@@ -47,7 +47,7 @@
                   <Image url="@../img/search.png" />
                </image>
             </ImageView>
-            <TextField fx:id="searchTextField" layoutX="338.0" layoutY="18.0" onAction="#search" prefHeight="25.0" prefWidth="829.0" promptText="Search location" />
+            <TextField fx:id="searchTextField" layoutX="338.0" layoutY="18.0" onAction="#search" prefHeight="25.0" prefWidth="723.0" promptText="Search location" />
             <Label layoutX="14.0" layoutY="30.0" prefWidth="110.0" text="Tranport type" textFill="WHITE">
                <font>
                   <Font size="18.0" />
@@ -60,6 +60,15 @@
                </font>
             </Label>
             <ComboBox fx:id="lineNumberChoice" layoutX="134.0" layoutY="25.0" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #FFFFFF;" />
+            <Button fx:id="refreshButton" contentDisplay="GRAPHIC_ONLY" layoutX="1120.0" layoutY="6.0" maxWidth="50.0" mnemonicParsing="false" onAction="#refresh" prefHeight="50.0" styleClass="refresh" stylesheets="@../styles/styles.css" text="Button">
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/refresh.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
    </top>

@@ -1,28 +1,16 @@
-const citymap = {
-	newyork: {
-		center: { lat: 40.714, lng: -74.005 },
-		population: 8405837,
-	}
-}
+const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+let labelIndex = 0;
+let markers = [];
 
 function initMap() {
 	var map = new google.maps.Map(document.getElementById('map'), {
 		zoom: 13,
 		center: {lat: 51.1078479035455, lng: 17.038266655466643}
 	});
-	for (const city in citymap) {
-		const cityCircle = new google.maps.Circle({
-			strokeColor: "#FF0000",
-			strokeOpacity: 0.8,
-			strokeWeight: 2,
-			fillColor: "#FF0000",
-			fillOpacity: 0.35,
-			map,
-			center: citymap[city].center,
-			radius: Math.sqrt(citymap[city].population) * 100,
-		});
-	}
 
+	google.maps.event.addListener(map, "click", (event) => {
+		addMarker(event.latLng, map);
+	});
 
 	var geocoder = new google.maps.Geocoder();
 
@@ -33,6 +21,26 @@ function initMap() {
 	document.getElementById('render').addEventListener('click', function () {
 		renderLocations(geocoder, map);
 	})
+
+	document.getElementById('search').addEventListener('click', function () {
+		drawArea(map);
+	})
+}
+
+function drawArea(resultsMap) {
+	var radius = document.getElementById('area').value;
+	console.log(resultsMap.markers)
+
+	const cityCircle = new google.maps.Circle({
+		strokeColor: "#FF0000",
+		strokeOpacity: 0.8,
+		strokeWeight: 2,
+		fillColor: "#FF0000",
+		fillOpacity: 0.35,
+		map: resultsMap,
+		center: {lat: 51.110744131381935, lng: 17.044514318387613},
+		radius: parseFloat(radius),
+	});
 }
 
 function renderLocations(geocoder, resultsMap) {
@@ -55,4 +63,28 @@ function geocodeAddress(geocoder, resultsMap) {
 			alert('Geocode was not successful for the following reason: ' + status);
 		}
 	});
+}
+
+function addMarker(location, map) {
+	// Add the marker at the clicked location, and add the next-available label
+	// from the array of alphabetical characters.
+	if (markers.length > 0) {
+		deleteMarkers();
+	}
+	markers.add(new google.maps.Marker({
+		position: location,
+		label: labels[labelIndex++ % labels.length],
+		map: map,
+	}));
+}
+
+function setMapOnAll(map) {
+	for (let i = 0; i < markers.length; i++) {
+		markers[i].setMap(map);
+	}
+}
+
+function deleteMarkers() {
+	setMapOnAll(null);
+	markers = [];
 }

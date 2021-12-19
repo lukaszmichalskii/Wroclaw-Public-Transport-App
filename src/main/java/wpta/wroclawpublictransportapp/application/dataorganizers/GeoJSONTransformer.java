@@ -10,7 +10,6 @@ public class GeoJSONTransformer {
 
     public JSONObject transformJSONtoGeoJSON(JSONArray data) {
         JSONObject featureCollection = new JSONObject();
-        System.out.println(data.toString());
 
         try {
             featureCollection.put("type", "FeatureCollection");

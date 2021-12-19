@@ -5,14 +5,14 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import wpta.wroclawpublictransportapp.application.dataorganizers.GeoJSONTransformer;
 import wpta.wroclawpublictransportapp.application.dataorganizers.JSONParser;
-import wpta.wroclawpublictransportapp.application.visualizator.Visualizer;
+import wpta.wroclawpublictransportapp.application.visualizator.VehicleLocationRender;
 
 import javax.script.ScriptException;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class Downloader {
+public class Downloader implements Runnable {
 
     private final URL url;
     private final String URLParameters;
@@ -46,13 +46,32 @@ public class Downloader {
         }
 
         JSONObject locationsInGeoJSONForm = geoJSONTransformer.transformJSONtoGeoJSON(locations);
-        Visualizer visualizer = new Visualizer(browser);
-        visualizer.visualize(locationsInGeoJSONForm.toString());
+        VehicleLocationRender vehicleLocationRender = new VehicleLocationRender(browser);
+        vehicleLocationRender.visualize(locationsInGeoJSONForm.toString());
         BufferedWriter writer = new BufferedWriter(new FileWriter("test_geojson.txt"));
 
         writer.write(locationsInGeoJSONForm.toString());
         writer.close();
         osWriter.close();
         bfReader.close();
+    }
+
+    @Override
+    public void run() {
+        int i = 0;
+        while (i < 10) {
+            try {
+                download();
+            } catch (IOException | ScriptException | NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+            i+=1;
+            System.out.println(i);
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

@@ -4,8 +4,6 @@ import com.teamdev.jxbrowser.browser.Browser;
 import wpta.wroclawpublictransportapp.application.alert.AlertManager;
 import wpta.wroclawpublictransportapp.application.alert.EmptyRequestException;
 
-import javax.script.ScriptException;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -27,16 +25,10 @@ public class LocationDataProvider {
         try {
             String URLParameters = urlRequestEncoder.encodeURL(parameters);
             URL url = apiSettings.getApiURLAddress();
-            Downloader downloader = new Downloader(url, URLParameters, browser);
-            downloader.download();
+            Thread thread = new Thread(new Downloader(url, URLParameters, browser));
+            thread.start();
         } catch (MalformedURLException e) {
             AlertManager.throwError("Invalid URL. The URL may have changed, the services have been informed");
-        } catch (IOException e) {
-            AlertManager.throwError("Error while downloading data from API. Try again.");
-        } catch (ScriptException e) {
-            AlertManager.throwError("Error while executing 'script.js' file");
-        } catch(NoSuchMethodException e) {
-            AlertManager.throwError("Problems with execution visualisation script");
         } catch (EmptyRequestException e) {
             AlertManager.throwError("Please select desired transport.");
         } catch (Exception e) {

@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import wpta.wroclawpublictransportapp.application.dataproviders.LocationDataProvider;
+import wpta.wroclawpublictransportapp.application.visualizator.AreaDrawer;
 
 import java.net.URL;
 import java.util.*;
@@ -37,7 +38,8 @@ public class RequestController implements Initializable {
 
     @FXML
     private void sendRequest() {
-        browser.navigation().reload();
+
+        //        browser.navigation().reload();
         parameters.get("tram").clear();
         parameters.get("bus").clear();
 
@@ -55,6 +57,12 @@ public class RequestController implements Initializable {
 //        AlertManager.throwConfirmation("Request has been sent with " + msg + " parameters\n" + parameters);
         LocationDataProvider locationDataProvider = new LocationDataProvider(browser);
         locationDataProvider.sendRequest(parameters);
+    }
+
+    @FXML
+    private void scan() {
+        AreaDrawer areaDrawer = new AreaDrawer(browser);
+        areaDrawer.draw(1000.0);
     }
 
     @Override

@@ -45,6 +45,20 @@
             padding-left: 100px;
         }
 
+        #search-panel {
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            z-index: 0;
+            background-color: #fff;
+            padding: 5px;
+            border: 1px solid #999;
+            text-align: center;
+            font-family: 'Roboto','sans-serif';
+            line-height: 30px;
+            padding-left: 100px;
+        }
+
     </style>
 </head>
 <body>
@@ -55,6 +69,10 @@
 <div id="render-panel">
     <input id="geoJSON" type="textbox" value="">
     <input id="render" type="button" value="Render">
+</div>
+<div id="search-panel">
+    <input id="area" type="textbox" value="">
+    <input id="search" type="button" value="Search">
 </div>
 <div id="map"></div>
 

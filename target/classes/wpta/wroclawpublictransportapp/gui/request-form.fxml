@@ -193,11 +193,23 @@
             <Insets left="5.0" />
          </padding>
       </VBox>
-      <Button fx:id="runButton" layoutX="103.0" layoutY="588.0" onAction="#sendRequest" mnemonicParsing="false" styleClass="options" stylesheets="@../styles/styles.css" text="Run" textFill="WHITE">
+      <Button fx:id="runButton" layoutX="175.0" layoutY="588.0" mnemonicParsing="false" onAction="#sendRequest" styleClass="options" stylesheets="@../styles/styles.css" text="Run" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/run.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="scanButton" layoutX="14.0" layoutY="588.0" mnemonicParsing="false" onAction="#scan" styleClass="options" stylesheets="@../styles/styles.css" text="Scan area" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/radar.png" />
                </image>
             </ImageView>
          </graphic>

@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 import wpta.wroclawpublictransportapp.application.alert.AlertManager;
 import wpta.wroclawpublictransportapp.application.map.LocationSearch;
 import wpta.wroclawpublictransportapp.application.map.MapViewProvider;
-import wpta.wroclawpublictransportapp.application.visualizator.Visualizer;
 import wpta.wroclawpublictransportapp.controller.helpers.initialization.ComboBoxInitializer;
 import wpta.wroclawpublictransportapp.controller.helpers.initialization.LineNumberInitialization;
 import wpta.wroclawpublictransportapp.controller.helpers.initialization.TransportTypeChoiceInitialization;
@@ -63,6 +62,11 @@ public class AppController implements Initializable {
     @FXML
     private void settings() {
         AlertManager.throwConfirmation("Work in progress");
+    }
+
+    @FXML
+    private void refresh() {
+        mapViewProvider.getBrowser().navigation().reload();
     }
 
     @Override
