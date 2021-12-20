@@ -1,6 +1,5 @@
 ﻿const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let labelIndex = 0;
-let markers = [];
 
 function initMap() {
 	var map = new google.maps.Map(document.getElementById('map'), {
@@ -8,9 +7,9 @@ function initMap() {
 		center: {lat: 51.1078479035455, lng: 17.038266655466643}
 	});
 
-	google.maps.event.addListener(map, "click", (event) => {
-		addMarker(event.latLng, map);
-	});
+	// google.maps.event.addListener(map, "click", (event) => {
+	// 	addMarker(event.latLng, map);
+	// });
 
 	var geocoder = new google.maps.Geocoder();
 
@@ -29,7 +28,6 @@ function initMap() {
 
 function drawArea(resultsMap) {
 	var radius = document.getElementById('area').value;
-	console.log(resultsMap.markers)
 
 	const cityCircle = new google.maps.Circle({
 		strokeColor: "#FF0000",
@@ -45,6 +43,8 @@ function drawArea(resultsMap) {
 
 function renderLocations(geocoder, resultsMap) {
 	var geoJSONStringRepresentation = document.getElementById('geoJSON').value;
+	// var geoJSONStringRepresentation = '{"features":[{"geometry":{"coordinates":[16.996735,51.069267],"type":"Point"},"type":"Feature","properties":{"line":"D"}},{"geometry":{"coordinates":[17.03747,51.10453],"type":"Point"},"type":"Feature","properties":{"line":"D"}},{"geometry":{"coordinates":[17.119217,51.15489],"type":"Point"},"type":"Feature","properties":{"line":"D"}},{"geometry":{"coordinates":[17.044888,51.10724],"type":"Point"},"type":"Feature","properties":{"line":"D"}},{"geometry":{"coordinates":[17.044258,51.12393],"type":"Point"},"type":"Feature","properties":{"line":"8"}},{"geometry":{"coordinates":[17.03738,51.104237],"type":"Point"},"type":"Feature","properties":{"line":"8"}},{"geometry":{"coordinates":[17.00688,51.075115],"type":"Point"},"type":"Feature","properties":{"line":"D"}},{"geometry":{"coordinates":[17.101238,51.14427],"type":"Point"},"type":"Feature","properties":{"line":"D"}},{"geometry":{"coordinates":[17.054882,51.127865],"type":"Point"},"type":"Feature","properties":{"line":"N"}},{"geometry":{"coordinates":[16.946033,51.097393],"type":"Point"},"type":"Feature","properties":{"line":"119"}},{"geometry":{"coordinates":[17.036354,51.101494],"type":"Point"},"type":"Feature","properties":{"line":"N"}},{"geometry":{"coordinates":[17.014126,51.088474],"type":"Point"},"type":"Feature","properties":{"line":"D"}},{"geometry":{"coordinates":[17.1039,51.14442],"type":"Point"},"type":"Feature","properties":{"line":"N"}},{"geometry":{"coordinates":[17.115835,51.147274],"type":"Point"},"type":"Feature","properties":{"line":"N"}},{"geometry":{"coordinates":[17.040453,51.10729],"type":"Point"},"type":"Feature","properties":{"line":"N"}},{"geometry":{"coordinates":[17.073626,51.115147],"type":"Point"},"type":"Feature","properties":{"line":"D"}},{"geometry":{"coordinates":[16.980238,51.126755],"type":"Point"},"type":"Feature","properties":{"line":"119"}},{"geometry":{"coordinates":[16.955753,51.11034],"type":"Point"},"type":"Feature","properties":{"line":"119"}},{"geometry":{"coordinates":[17.114613,51.14719],"type":"Point"},"type":"Feature","properties":{"line":"N"}},{"geometry":{"coordinates":[17.028625,51.100494],"type":"Point"},"type":"Feature","properties":{"line":"D"}},{"geometry":{"coordinates":[17.063278,51.079094],"type":"Point"},"type":"Feature","properties":{"line":"8"}},{"geometry":{"coordinates":[17.043682,51.121937],"type":"Point"},"type":"Feature","properties":{"line":"8"}},{"geometry":{"coordinates":[16.947449,51.0966],"type":"Point"},"type":"Feature","properties":{"line":"119"}},{"geometry":{"coordinates":[17.062767,51.079765],"type":"Point"},"type":"Feature","properties":{"line":"8"}},{"geometry":{"coordinates":[17.062643,51.07993],"type":"Point"},"type":"Feature","properties":{"line":"8"}},{"geometry":{"coordinates":[17.037212,51.13456],"type":"Point"},"type":"Feature","properties":{"line":"8"}},{"geometry":{"coordinates":[17.029646,51.08921],"type":"Point"},"type":"Feature","properties":{"line":"8"}}],"type":"FeatureCollection"}';
+
 	var geoJSON = JSON.parse(geoJSONStringRepresentation);
 	var vehiclesInfo = geoJSON['features'];
 	var coordinates = [];
@@ -56,6 +56,7 @@ function renderLocations(geocoder, resultsMap) {
 		labels.push(vehiclesInfo[i]['properties']['line']);
 	}
 
+	var markers = [];
 	// render markers on locations
 	for (var j = 0; j < coordinates.length; j++) {
 		var marker = new google.maps.Marker({
@@ -65,6 +66,9 @@ function renderLocations(geocoder, resultsMap) {
 		});
 		markers.push(marker);
 	}
+
+	const imagePath = "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m";
+	new MarkerClusterer(resultsMap, markers, {imagePath: imagePath});
 }
 
 function geocodeAddress(geocoder, resultsMap) {
@@ -85,14 +89,12 @@ function geocodeAddress(geocoder, resultsMap) {
 function addMarker(location, map) {
 	// Add the marker at the clicked location, and add the next-available label
 	// from the array of alphabetical characters.
-	if (markers.length > 0) {
-		deleteMarkers();
-	}
-	markers.add(new google.maps.Marker({
+
+	new google.maps.Marker({
 		position: location,
 		label: labels[labelIndex++ % labels.length],
 		map: map,
-	}));
+	});
 }
 
 function setMapOnAll(map) {
