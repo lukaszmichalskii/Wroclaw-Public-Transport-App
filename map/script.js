@@ -1,4 +1,4 @@
-const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+﻿const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let labelIndex = 0;
 let markers = [];
 
@@ -45,9 +45,26 @@ function drawArea(resultsMap) {
 
 function renderLocations(geocoder, resultsMap) {
 	var geoJSONStringRepresentation = document.getElementById('geoJSON').value;
-	resultsMap.data.addGeoJson(JSON.parse(geoJSONStringRepresentation));
-	// test locations
-	// resultsMap.data.addGeoJson({"features":[{"geometry":{"coordinates":[17.005518,51.11112],"type":"Point"},"type":"Feature","properties":{"transport":"tmp_id"}},{"geometry":{"coordinates":[17.07346,51.115074],"type":"Point"},"type":"Feature","properties":{"transport":"tmp_id"}},{"geometry":{"coordinates":[17.103502,51.114044],"type":"Point"},"type":"Feature","properties":{"transport":"tmp_id"}},{"geometry":{"coordinates":[17.019949,51.108353],"type":"Point"},"type":"Feature","properties":{"transport":"tmp_id"}},{"geometry":{"coordinates":[17.036953,51.105125],"type":"Point"},"type":"Feature","properties":{"transport":"tmp_id"}},{"geometry":{"coordinates":[16.971334,51.129566],"type":"Point"},"type":"Feature","properties":{"transport":"tmp_id"}},{"geometry":{"coordinates":[17.038548,51.106888],"type":"Point"},"type":"Feature","properties":{"transport":"tmp_id"}},{"geometry":{"coordinates":[17.068865,51.113926],"type":"Point"},"type":"Feature","properties":{"transport":"tmp_id"}},{"geometry":{"coordinates":[16.958519,51.13249],"type":"Point"},"type":"Feature","properties":{"transport":"tmp_id"}},{"geometry":{"coordinates":[16.983587,51.12529],"type":"Point"},"type":"Feature","properties":{"transport":"tmp_id"}}],"type":"FeatureCollection"});
+	var geoJSON = JSON.parse(geoJSONStringRepresentation);
+	var vehiclesInfo = geoJSON['features'];
+	var coordinates = [];
+	var labels = [];
+
+	// extract desired data from geoJSON form
+	for (var i = 0; i < vehiclesInfo.length; i++) {
+		coordinates.push(vehiclesInfo[i]['geometry']['coordinates']);
+		labels.push(vehiclesInfo[i]['properties']['line']);
+	}
+
+	// render markers on locations
+	for (var j = 0; j < coordinates.length; j++) {
+		var marker = new google.maps.Marker({
+			map: resultsMap,
+			position: { lat: coordinates[j][1], lng: coordinates[j][0]},
+			label: labels[j],
+		});
+		markers.push(marker);
+	}
 }
 
 function geocodeAddress(geocoder, resultsMap) {

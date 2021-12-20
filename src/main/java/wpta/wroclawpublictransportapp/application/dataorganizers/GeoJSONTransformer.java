@@ -26,7 +26,7 @@ public class GeoJSONTransformer {
                 JSONArray coord = new JSONArray("["+lat+","+lon+"]");
                 point.put("coordinates", coord);
                 JSONObject name = new JSONObject();
-                name.put("Name", data.getJSONObject(i).get("name"));
+                name.put("line", data.getJSONObject(i).get("name").toString().toUpperCase());
                 JSONObject feature = new JSONObject();
                 feature.put("properties", name);
                 feature.put("geometry", point);

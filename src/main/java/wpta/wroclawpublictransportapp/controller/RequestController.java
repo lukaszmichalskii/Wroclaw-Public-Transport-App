@@ -8,7 +8,6 @@ import javafx.fxml.Initializable;
 import wpta.wroclawpublictransportapp.application.dataproviders.LocationDataProvider;
 import wpta.wroclawpublictransportapp.application.map.MapViewProvider;
 import wpta.wroclawpublictransportapp.application.visualizator.AreaDrawer;
-import wpta.wroclawpublictransportapp.controller.helpers.AppSettings;
 
 import java.net.URL;
 import java.util.*;
@@ -30,7 +29,7 @@ public class RequestController implements Initializable {
     private ObservableList<JFXCheckBox> buses;
     private final Map<String, List<String>> parameters;
     private final LocationDataProvider locationDataProvider;
-    private Integer refreshTime = AppSettings.getDefaultRefreshTime();
+    private Integer refreshTime = 10000; // default refresh time
 
     public RequestController() {
         locationDataProvider = new LocationDataProvider();
