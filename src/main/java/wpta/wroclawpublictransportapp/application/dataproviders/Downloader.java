@@ -5,6 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import wpta.wroclawpublictransportapp.application.dataorganizers.GeoJSONTransformer;
 import wpta.wroclawpublictransportapp.application.dataorganizers.JSONParser;
+import wpta.wroclawpublictransportapp.application.map.MapViewProvider;
 import wpta.wroclawpublictransportapp.application.visualizator.VehicleLocationRender;
 
 import javax.script.ScriptException;
@@ -19,13 +20,22 @@ public class Downloader implements Runnable {
     private final JSONParser jsonParser;
     private final GeoJSONTransformer geoJSONTransformer;
     private final Browser browser;
+    private final Integer refreshTime;
+    private Flag flag;
+    private Thread thread;
 
-    public Downloader(URL url, String URLParameters, Browser browser) {
+    public Downloader(URL url, String URLParameters, Integer refreshTime) {
         this.url = url;
         this.URLParameters = URLParameters;
         jsonParser = new JSONParser();
         geoJSONTransformer = new GeoJSONTransformer();
-        this.browser = browser;
+        this.browser = MapViewProvider.getBrowser();
+        this.refreshTime = refreshTime;
+
+        thread = new Thread(this);
+        flag = Flag.RUNNING;
+        thread.start();
+
     }
 
     public void download() throws IOException, ScriptException, NoSuchMethodException {
@@ -58,20 +68,17 @@ public class Downloader implements Runnable {
 
     @Override
     public void run() {
-        int i = 0;
-        while (i < 10) {
+        while (flag == Flag.RUNNING) {
             try {
                 download();
-            } catch (IOException | ScriptException | NoSuchMethodException e) {
-                e.printStackTrace();
-            }
-            i+=1;
-            System.out.println(i);
-            try {
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {
+                Thread.sleep(refreshTime);
+            } catch (IOException | ScriptException | NoSuchMethodException | InterruptedException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void stop() {
+        flag = Flag.STOP;
     }
 }

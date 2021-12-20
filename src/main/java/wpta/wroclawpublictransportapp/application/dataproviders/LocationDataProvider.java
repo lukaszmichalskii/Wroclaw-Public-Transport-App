@@ -1,6 +1,5 @@
 package wpta.wroclawpublictransportapp.application.dataproviders;
 
-import com.teamdev.jxbrowser.browser.Browser;
 import wpta.wroclawpublictransportapp.application.alert.AlertManager;
 import wpta.wroclawpublictransportapp.application.alert.EmptyRequestException;
 
@@ -13,20 +12,20 @@ public class LocationDataProvider {
 
     private final APISettings apiSettings;
     private final URLRequestEncoder urlRequestEncoder;
-    private final Browser browser;
+    private Downloader downloader = null;
 
-    public LocationDataProvider(Browser browser) {
+    public LocationDataProvider() {
         apiSettings = new APISettings();
         urlRequestEncoder = new URLRequestEncoder(apiSettings.getURLPrefixForBuses(), apiSettings.getURLPrefixForTrams());
-        this.browser = browser;
     }
 
-    public void sendRequest(Map<String, List<String>> parameters) {
+    public void sendRequest(Map<String, List<String>> parameters, Integer time) {
         try {
+            if (downloader != null)
+                downloader.stop();
             String URLParameters = urlRequestEncoder.encodeURL(parameters);
             URL url = apiSettings.getApiURLAddress();
-            Thread thread = new Thread(new Downloader(url, URLParameters, browser));
-            thread.start();
+            downloader = new Downloader(url, URLParameters, time);
         } catch (MalformedURLException e) {
             AlertManager.throwError("Invalid URL. The URL may have changed, the services have been informed");
         } catch (EmptyRequestException e) {

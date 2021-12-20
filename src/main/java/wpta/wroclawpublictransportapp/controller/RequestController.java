@@ -1,13 +1,14 @@
 package wpta.wroclawpublictransportapp.controller;
 
 import com.jfoenix.controls.JFXCheckBox;
-import com.teamdev.jxbrowser.browser.Browser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import wpta.wroclawpublictransportapp.application.dataproviders.LocationDataProvider;
+import wpta.wroclawpublictransportapp.application.map.MapViewProvider;
 import wpta.wroclawpublictransportapp.application.visualizator.AreaDrawer;
+import wpta.wroclawpublictransportapp.controller.helpers.AppSettings;
 
 import java.net.URL;
 import java.util.*;
@@ -28,9 +29,11 @@ public class RequestController implements Initializable {
     private ObservableList<JFXCheckBox> trams;
     private ObservableList<JFXCheckBox> buses;
     private final Map<String, List<String>> parameters;
-    private Browser browser;
+    private final LocationDataProvider locationDataProvider;
+    private Integer refreshTime = AppSettings.getDefaultRefreshTime();
 
     public RequestController() {
+        locationDataProvider = new LocationDataProvider();
         parameters = new HashMap<>();
         parameters.put("tram", new ArrayList<>());
         parameters.put("bus", new ArrayList<>());
@@ -39,7 +42,6 @@ public class RequestController implements Initializable {
     @FXML
     private void sendRequest() {
 
-        //        browser.navigation().reload();
         parameters.get("tram").clear();
         parameters.get("bus").clear();
 
@@ -55,13 +57,12 @@ public class RequestController implements Initializable {
             }
         }
 //        AlertManager.throwConfirmation("Request has been sent with " + msg + " parameters\n" + parameters);
-        LocationDataProvider locationDataProvider = new LocationDataProvider(browser);
-        locationDataProvider.sendRequest(parameters);
+        locationDataProvider.sendRequest(parameters, refreshTime);
     }
 
     @FXML
     private void scan() {
-        AreaDrawer areaDrawer = new AreaDrawer(browser);
+        AreaDrawer areaDrawer = new AreaDrawer(MapViewProvider.getBrowser());
         areaDrawer.draw(1000.0);
     }
 
@@ -74,7 +75,7 @@ public class RequestController implements Initializable {
                 B244,B245, B246, B247, B248, B249, B250, B251, B253, B255, B257, B259, B315, B319, B602, B607, B703, B709, B731));
     }
 
-    public void setBrowser(Browser browser) {
-        this.browser = browser;
+    public void setRefreshTime(Integer time) {
+        this.refreshTime = time;
     }
 }

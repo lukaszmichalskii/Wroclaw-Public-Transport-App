@@ -5,7 +5,7 @@ import javafx.scene.control.ComboBox;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TramLinesInitializer implements LinesInitializer {
+public class TramLinesInitializer implements ComboBoxInitializer {
 
     private List<String> tramLines;
 

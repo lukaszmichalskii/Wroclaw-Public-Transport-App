@@ -11,14 +11,14 @@ import java.io.File;
  */
 public class MapViewProvider {
     private final String HTMLMapViewFilepath;
-    private final Browser browser;
+    private static Browser browser;
 
     public MapViewProvider() {
-        this.browser = AppEngine.getEngine().newBrowser();
+        browser = AppEngine.getEngine().newBrowser();
         this.HTMLMapViewFilepath = "D:\\PWr\\Jezyki programowania\\laboratorium\\WroclawPublicTransportApp\\map\\map.html";
     }
 
-    public Browser getBrowser() {
+    public static Browser getBrowser() {
         return browser;
     }
 

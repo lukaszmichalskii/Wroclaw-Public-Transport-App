@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class LineNumberInitialization implements ComboBoxInitializer {
 
-    private LinesInitializer linesInitializer;
+    private ComboBoxInitializer linesInitializer;
 
     public LineNumberInitialization(String transportType) {
         if (Objects.equals(transportType, "Bus")) {

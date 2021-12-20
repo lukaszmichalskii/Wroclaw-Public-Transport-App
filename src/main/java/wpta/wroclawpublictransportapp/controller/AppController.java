@@ -42,7 +42,7 @@ public class AppController implements Initializable {
 
     public AppController() {
         mapViewProvider = new MapViewProvider();
-        locationSearch = new LocationSearch(mapViewProvider.getBrowser());
+        locationSearch = new LocationSearch(MapViewProvider.getBrowser());
     }
 
     @FXML
@@ -61,18 +61,18 @@ public class AppController implements Initializable {
 
     @FXML
     private void settings() {
-        AlertManager.throwConfirmation("Work in progress");
+        SettingsController settingsController = (SettingsController) SectionLoader.load("gui/settings.fxml", appInterface, BorderPaneLocation.LEFT);
+        settingsController.setParent(appInterface);
     }
 
     @FXML
     private void refresh() {
-        mapViewProvider.getBrowser().navigation().reload();
+        MapViewProvider.getBrowser().navigation().reload();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        RequestController requestController = (RequestController) SectionLoader.load("gui/request-form.fxml", appInterface, BorderPaneLocation.LEFT);
-        requestController.setBrowser(mapViewProvider.getBrowser());
+        SectionLoader.load("gui/request-form.fxml", appInterface, BorderPaneLocation.LEFT);
         initMap();
         initTransportTypeOptions();
     }
