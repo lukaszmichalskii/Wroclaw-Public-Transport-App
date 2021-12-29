@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #2b2b2b;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wpta.wroclawpublictransportapp.controller.VehicleFinderController">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="20.0" layoutY="14.0" text="Find vehicle in the desired area" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="72.0" prefHeight="26.0" prefWidth="47.0" text="Radius" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="130.0" prefHeight="26.0" prefWidth="105.0" text="Transport type" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="169.0" prefHeight="26.0" prefWidth="105.0" text="Line number" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="220.0" text="Address" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="radiusTextField" layoutX="92.0" layoutY="79.0" prefHeight="26.0" prefWidth="88.0" promptText="meters" />
+            <TextField fx:id="addressTextFiled" layoutX="14.0" layoutY="246.0" prefHeight="26.0" prefWidth="270.0" promptText="Address" />
+            <Label layoutX="14.0" layoutY="92.0" prefHeight="26.0" prefWidth="80.0" text="(in meters)" textFill="WHITE" />
+            <ComboBox fx:id="transportTypeChoice" layoutX="136.0" layoutY="131.0" onAction="#transportTypeChoiceOnActionPerformed" prefHeight="26.0" prefWidth="109.0" style="-fx-background-color: #FFFFFF;" />
+            <ComboBox fx:id="lineNumberChoice" layoutX="136.0" layoutY="169.0" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: #FFFFFF;" />
+            <Button fx:id="scanButton" layoutX="144.0" layoutY="328.0" mnemonicParsing="false" onAction="#scan" styleClass="options" stylesheets="@../styles/styles.css" text="Scan area" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/radar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="cancelButton" layoutX="13.0" layoutY="328.0" mnemonicParsing="false" onAction="#cancel" styleClass="options" stylesheets="@../styles/styles.css" text="Cancel" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/cancel.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

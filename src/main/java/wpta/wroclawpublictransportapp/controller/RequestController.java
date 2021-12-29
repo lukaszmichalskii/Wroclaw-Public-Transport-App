@@ -6,8 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import wpta.wroclawpublictransportapp.application.dataproviders.LocationDataProvider;
-import wpta.wroclawpublictransportapp.application.map.MapViewProvider;
-import wpta.wroclawpublictransportapp.application.visualizator.AreaDrawer;
+import wpta.wroclawpublictransportapp.controller.helpers.loader.SceneCreator;
 
 import java.net.URL;
 import java.util.*;
@@ -61,8 +60,7 @@ public class RequestController implements Initializable {
 
     @FXML
     private void scan() {
-        AreaDrawer areaDrawer = new AreaDrawer(MapViewProvider.getBrowser());
-        areaDrawer.draw(1000.0);
+        SceneCreator.createScene("gui/bus-finder-scanner.fxml", 300, 400);
     }
 
     @Override

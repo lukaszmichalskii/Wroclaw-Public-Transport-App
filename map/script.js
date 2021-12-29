@@ -2,6 +2,7 @@
 let labelIndex = 0;
 let markers = [];
 let markerClusterer;
+let circle;
 
 function initMap() {
 	var map = new google.maps.Map(document.getElementById('map'), {
@@ -27,15 +28,28 @@ function initMap() {
 		drawArea(map);
 	})
 
-	document.getElementById('deletetest').addEventListener('click', function () {
+	document.getElementById('deleteMarkers').addEventListener('click', function () {
 		deleteMarkers();
 	})
+
+	document.getElementById('deleteCircle').addEventListener('click', function () {
+		deleteCircle(circle);
+	})
+}
+
+function deleteCircle(circle) {
+	circle.setMap(null);
+	circle = null;
 }
 
 function drawArea(resultsMap) {
 	var radius = document.getElementById('area').value;
 
-	const cityCircle = new google.maps.Circle({
+	if (circle != null) {
+		deleteCircle(circle);
+	}
+
+	circle = new google.maps.Circle({
 		strokeColor: "#FF0000",
 		strokeOpacity: 0.8,
 		strokeWeight: 2,
