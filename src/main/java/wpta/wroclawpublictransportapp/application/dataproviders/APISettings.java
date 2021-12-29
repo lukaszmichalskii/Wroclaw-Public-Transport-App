@@ -3,6 +3,9 @@ package wpta.wroclawpublictransportapp.application.dataproviders;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * Class stores encoded characters ready to use while creating URL parameters sending as a request to API
+ */
 public class APISettings {
     private final String apiURLAddress;
     private final String URLPrefixForBuses;

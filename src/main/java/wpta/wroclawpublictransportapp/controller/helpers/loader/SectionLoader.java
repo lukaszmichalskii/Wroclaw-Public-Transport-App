@@ -7,6 +7,9 @@ import wpta.wroclawpublictransportapp.Main;
 
 import java.io.IOException;
 
+/**
+ * Class responsible for loading different scenes
+ */
 public class SectionLoader {
     public static Object load(String GUIFormFilepath, BorderPane borderPane, BorderPaneLocation location) {
         Parent root = null;

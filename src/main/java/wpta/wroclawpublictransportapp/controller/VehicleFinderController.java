@@ -2,11 +2,12 @@ package wpta.wroclawpublictransportapp.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import wpta.wroclawpublictransportapp.application.alert.AlertManager;
+import wpta.wroclawpublictransportapp.application.dataproviders.VehicleFinder;
+import wpta.wroclawpublictransportapp.application.map.MapViewProvider;
+import wpta.wroclawpublictransportapp.application.visualizator.AreaDrawer;
 import wpta.wroclawpublictransportapp.controller.helpers.initialization.ComboBoxInitializer;
 import wpta.wroclawpublictransportapp.controller.helpers.initialization.LineNumberInitialization;
 import wpta.wroclawpublictransportapp.controller.helpers.initialization.TransportTypeChoiceInitialization;
@@ -17,12 +18,6 @@ import java.util.ResourceBundle;
 public class VehicleFinderController implements Initializable {
 
     @FXML
-    private TextField addressTextField;
-
-    @FXML
-    private Button cancelButton;
-
-    @FXML
     private ComboBox<String> lineNumberChoice;
 
     @FXML
@@ -31,15 +26,26 @@ public class VehicleFinderController implements Initializable {
     @FXML
     private ComboBox<String> transportTypeChoice;
 
-    @FXML
-    void cancel() {
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
+    private final VehicleFinder vehicleFinder;
+
+    public VehicleFinderController() {
+        vehicleFinder = new VehicleFinder();
     }
 
     @FXML
-    void scan() {
+    private void scan() {
+        if (radiusTextField.getText().isEmpty())
+            AlertManager.throwError("Radius not provided");
+        else if (validateRadius(radiusTextField.getText()))
+            vehicleFinder.scan(transportTypeChoice.getValue(), lineNumberChoice.getValue(), radiusTextField.getText());
+    }
 
+    @FXML
+    private void apply() {
+        if (validateRadius(radiusTextField.getText())) {
+            AreaDrawer areaDrawer = new AreaDrawer(MapViewProvider.getBrowser());
+            areaDrawer.draw(Double.valueOf(radiusTextField.getText()));
+        }
     }
 
     @Override
@@ -74,5 +80,15 @@ public class VehicleFinderController implements Initializable {
     private void initTransportTypeOptions() {
         ComboBoxInitializer initializer = new TransportTypeChoiceInitialization();
         initializer.init(transportTypeChoice);
+    }
+
+    private boolean validateRadius(String radius) {
+        try {
+            Double.parseDouble(radius);
+            return true;
+        } catch (Exception e) {
+            AlertManager.throwError("Invalid radius format.");
+        }
+        return false;
     }
 }

@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -205,17 +206,11 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="scanButton" layoutX="14.0" layoutY="588.0" mnemonicParsing="false" onAction="#scan" styleClass="options" stylesheets="@../styles/styles.css" text="Scan area" textFill="WHITE">
-         <graphic>
-            <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/radar.png" />
-               </image>
-            </ImageView>
-         </graphic>
+      <Label layoutX="8.0" layoutY="588.0" text="Refresh time:" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font size="16.0" />
          </font>
-      </Button>
+      </Label>
+      <ComboBox fx:id="refreshTimeChoice" layoutX="8.0" layoutY="612.0" prefHeight="6.0" prefWidth="140.0" style="-fx-background-color: #FFFFFF;" />
    </children>
 </AnchorPane>

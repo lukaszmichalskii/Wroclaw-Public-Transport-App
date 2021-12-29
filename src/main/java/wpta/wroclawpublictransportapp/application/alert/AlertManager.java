@@ -17,4 +17,11 @@ public interface AlertManager {
         alert.setContentText(msg);
         alert.show();
     }
+
+    static void throwInformation(String msg) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Information.");
+        alert.setContentText(msg);
+        alert.show();
+    }
 }

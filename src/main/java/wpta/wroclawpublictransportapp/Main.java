@@ -8,6 +8,9 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
+/**
+ * Main class of JavaFX, responsible for launch javafx thread
+ */
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {

@@ -2,6 +2,9 @@ package wpta.wroclawpublictransportapp.application.time;
 
 import java.util.Objects;
 
+/**
+ * Class responsible for transforming picked time to proper time unit (in milliseconds)
+ */
 public class TimeParser {
     private final Integer secondsUnit = 60;
     private final Integer milliSecondsToSecondsScalar = 1000;

@@ -7,6 +7,9 @@ import com.teamdev.jxbrowser.dom.InputElement;
 import com.teamdev.jxbrowser.frame.Frame;
 import wpta.wroclawpublictransportapp.application.alert.AlertManager;
 
+/**
+ * Class enable the option of searching for desired address through app search panel
+ */
 public class LocationSearch {
 
     private final Browser browser;

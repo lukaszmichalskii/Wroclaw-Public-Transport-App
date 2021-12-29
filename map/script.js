@@ -10,9 +10,9 @@ function initMap() {
 		center: {lat: 51.1078479035455, lng: 17.038266655466643}
 	});
 
-	// google.maps.event.addListener(map, "click", (event) => {
-	// 	addMarker(event.latLng, map);
-	// });
+	google.maps.event.addListener(map, "click", (event) => {
+		addMarker(event.latLng, map);
+	});
 
 	var geocoder = new google.maps.Geocoder();
 
@@ -98,11 +98,24 @@ function geocodeAddress(geocoder, resultsMap) {
 	});
 }
 
-function addMarker(location, map) {
-	new google.maps.Marker({
-		position: location,
-		label: labels[labelIndex++ % labels.length],
-		map: map,
+function addMarker(location, resultsMap) {
+	var radius = document.getElementById('radius').value;
+	// var radius = 1000;
+	document.getElementById("coordinates").value = location;
+
+	if (circle != null) {
+		deleteCircle(circle);
+	}
+
+	circle = new google.maps.Circle({
+		strokeColor: "#FF0000",
+		strokeOpacity: 0.8,
+		strokeWeight: 2,
+		fillColor: "#FF0000",
+		fillOpacity: 0.35,
+		map: resultsMap,
+		center: location,
+		radius: parseFloat(radius),
 	});
 }
 

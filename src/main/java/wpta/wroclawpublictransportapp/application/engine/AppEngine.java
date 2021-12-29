@@ -3,6 +3,9 @@ package wpta.wroclawpublictransportapp.application.engine;
 import com.teamdev.jxbrowser.engine.Engine;
 import static com.teamdev.jxbrowser.engine.RenderingMode.HARDWARE_ACCELERATED;
 
+/**
+ * Singleton responsible for creating and accessing of app engine
+ */
 public class AppEngine {
     private static Engine engine;
 

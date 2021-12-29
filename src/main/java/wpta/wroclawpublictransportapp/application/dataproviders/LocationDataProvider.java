@@ -8,11 +8,14 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Class responsible for delivering selected vehicle positions
+ */
 public class LocationDataProvider {
 
     private final APISettings apiSettings;
     private final URLRequestEncoder urlRequestEncoder;
-    private Downloader downloader = null;
+    private DownloadThread downloadThread = null;
 
     public LocationDataProvider() {
         apiSettings = new APISettings();
@@ -21,11 +24,11 @@ public class LocationDataProvider {
 
     public void sendRequest(Map<String, List<String>> parameters, Integer time) {
         try {
-            if (downloader != null)
-                downloader.stop();
+            if (downloadThread != null)
+                stopProcess();
             String URLParameters = urlRequestEncoder.encodeURL(parameters);
             URL url = apiSettings.getApiURLAddress();
-            downloader = new Downloader(url, URLParameters, time);
+            downloadThread = new DownloadThread(url, URLParameters, time);
         } catch (MalformedURLException e) {
             AlertManager.throwError("Invalid URL. The URL may have changed, the services have been informed");
         } catch (EmptyRequestException e) {
@@ -34,5 +37,9 @@ public class LocationDataProvider {
             AlertManager.throwError("Something went wrong. Check your selections.");
             e.printStackTrace();
         }
+    }
+
+    public void stopProcess() {
+        downloadThread.stop();
     }
 }

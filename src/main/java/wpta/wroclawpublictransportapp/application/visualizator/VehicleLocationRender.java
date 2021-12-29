@@ -6,6 +6,9 @@ import com.teamdev.jxbrowser.dom.Element;
 import com.teamdev.jxbrowser.dom.InputElement;
 import com.teamdev.jxbrowser.frame.Frame;
 
+/**
+ * Class execute JavaScript code to render objects on map view
+ */
 public class VehicleLocationRender {
 
     private final Browser browser;

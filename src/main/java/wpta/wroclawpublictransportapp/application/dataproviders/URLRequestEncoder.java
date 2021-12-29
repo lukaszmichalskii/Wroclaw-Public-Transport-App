@@ -4,7 +4,11 @@ import wpta.wroclawpublictransportapp.application.alert.EmptyRequestException;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
+/**
+ * Class used for encoding and creating URL parameters sending as a request to API
+ */
 public class URLRequestEncoder {
 
     private final String URLPrefixForBuses;
@@ -23,6 +27,21 @@ public class URLRequestEncoder {
             throw new EmptyRequestException("Empty transport selection");
 
         return createURLRequestParameters(busesURLRequest, tramsURLRequest);
+    }
+
+    public String encodeURL(String transportType, String lineNumber) throws EmptyRequestException {
+        if (Objects.equals(transportType, "") || Objects.equals(lineNumber, ""))
+            throw new EmptyRequestException("Empty transport selection");
+
+        StringBuilder urlParameters = new StringBuilder();
+        if (Objects.equals(transportType, "Bus")) {
+            urlParameters.append(URLPrefixForBuses).append(lineNumber);
+        } else if (Objects.equals(transportType, "Tram")) {
+            urlParameters.append(URLPrefixForTrams).append(lineNumber);
+        } else {
+            return "";
+        }
+        return urlParameters.toString();
     }
 
     private String encodeTramURLRequest(List<String> trams) {

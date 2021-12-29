@@ -49,14 +49,23 @@ public class AppController implements Initializable {
     }
 
     @FXML
+    private void scan() {
+        SectionLoader.load("gui/bus-finder-scanner.fxml", appInterface, BorderPaneLocation.LEFT);
+    }
+
+    @FXML
     private void refresh() {
         MapViewProvider.getBrowser().navigation().reload();
     }
 
+    @FXML
+    private void pickerView() {
+        SectionLoader.load("gui/request-form.fxml", appInterface, BorderPaneLocation.LEFT);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        SettingsController settingsController = (SettingsController) SectionLoader.load("gui/settings.fxml", appInterface, BorderPaneLocation.LEFT);
-        settingsController.setParent(appInterface);
+        SectionLoader.load("gui/request-form.fxml", appInterface, BorderPaneLocation.LEFT);
         initMap();
     }
 

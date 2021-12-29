@@ -5,13 +5,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import wpta.wroclawpublictransportapp.application.dataproviders.LocationDataProvider;
-import wpta.wroclawpublictransportapp.controller.helpers.loader.SceneCreator;
+import wpta.wroclawpublictransportapp.application.time.TimeParser;
+import wpta.wroclawpublictransportapp.controller.helpers.initialization.ComboBoxInitializer;
+import wpta.wroclawpublictransportapp.controller.helpers.initialization.RefreshTimeInitializer;
 
 import java.net.URL;
 import java.util.*;
 
 public class RequestController implements Initializable {
+
+    @FXML
+    private ComboBox<String> refreshTimeChoice;
 
     // Available buses
     @FXML
@@ -28,9 +34,10 @@ public class RequestController implements Initializable {
     private ObservableList<JFXCheckBox> buses;
     private final Map<String, List<String>> parameters;
     private final LocationDataProvider locationDataProvider;
-    private Integer refreshTime;
+    private final TimeParser timeParser;
 
     public RequestController() {
+        timeParser = new TimeParser();
         locationDataProvider = new LocationDataProvider();
         parameters = new HashMap<>();
         parameters.put("tram", new ArrayList<>());
@@ -55,12 +62,9 @@ public class RequestController implements Initializable {
             }
         }
 //        AlertManager.throwConfirmation("Request has been sent with " + msg + " parameters\n" + parameters);
-        locationDataProvider.sendRequest(parameters, refreshTime);
-    }
-
-    @FXML
-    private void scan() {
-        SceneCreator.createScene("gui/bus-finder-scanner.fxml", 300, 400);
+        String pickedTime = refreshTimeChoice.getValue();
+        Integer time = timeParser.parseTime(pickedTime);
+        locationDataProvider.sendRequest(parameters, time);
     }
 
     @Override
@@ -70,9 +74,11 @@ public class RequestController implements Initializable {
                 B114, B115, B116, B118, B119, B120, B121, B122, B124, B125, B126, B127, B128, B129, B130, B131, B132, B133,
                 B134, B136, B140, B142, B143, B144, B145, B146, B147, B148, B149, B150, B151, B204, B206, B241, B242, B243,
                 B244,B245, B246, B247, B248, B249, B250, B251, B253, B255, B257, B259, B315, B319, B602, B607, B703, B709, B731));
+        initRefreshOptions();
     }
 
-    public void setRefreshTime(Integer time) {
-        this.refreshTime = time;
+    private void initRefreshOptions() {
+        ComboBoxInitializer initializer = new RefreshTimeInitializer();
+        initializer.init(refreshTimeChoice);
     }
 }

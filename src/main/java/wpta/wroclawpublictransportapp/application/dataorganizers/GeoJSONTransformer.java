@@ -6,6 +6,9 @@ import org.json.JSONObject;
 
 import java.math.BigDecimal;
 
+/**
+ * Class responsible for transforming downloaded data to geoJSON form ready to use on the map provider
+ */
 public class GeoJSONTransformer {
 
     public JSONObject transformJSONtoGeoJSON(JSONArray data) {

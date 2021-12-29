@@ -6,6 +6,9 @@ import com.teamdev.jxbrowser.dom.Element;
 import com.teamdev.jxbrowser.dom.InputElement;
 import com.teamdev.jxbrowser.frame.Frame;
 
+/**
+ * Class responsible for setting radius length
+ */
 public class AreaDrawer {
     private final Browser browser;
 
@@ -17,7 +20,7 @@ public class AreaDrawer {
         Document document = browser.mainFrame().flatMap(Frame::document).get();
         Element searchElement = document.findElementById("search").get();
 
-        document.findElementById("area").ifPresent(address ->
+        document.findElementById("radius").ifPresent(address ->
                 ((InputElement) address).value(String.valueOf(radius)));
 
         searchElement.click();

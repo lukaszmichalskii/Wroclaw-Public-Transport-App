@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 
+/**
+ * Class opens a connection with URL
+ */
 public class ConnectionProvider {
 
     private final URL url ;
