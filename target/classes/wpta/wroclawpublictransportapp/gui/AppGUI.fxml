@@ -33,15 +33,6 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="settingsButton" contentDisplay="GRAPHIC_ONLY" layoutX="1171.0" layoutY="5.0" maxWidth="50.0" mnemonicParsing="false" onAction="#settings" prefHeight="50.0" styleClass="options" stylesheets="@../styles/styles.css" text="Button">
-               <graphic>
-                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/settings.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="294.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/search.png" />
@@ -60,7 +51,7 @@
                </font>
             </Label>
             <ComboBox fx:id="lineNumberChoice" layoutX="134.0" layoutY="25.0" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #FFFFFF;" />
-            <Button fx:id="refreshButton" contentDisplay="GRAPHIC_ONLY" layoutX="1120.0" layoutY="6.0" maxWidth="50.0" mnemonicParsing="false" onAction="#refresh" prefHeight="50.0" styleClass="refresh" stylesheets="@../styles/styles.css" text="Button">
+            <Button fx:id="refreshButton" contentDisplay="GRAPHIC_ONLY" layoutX="1170.0" layoutY="6.0" maxWidth="50.0" mnemonicParsing="false" onAction="#refresh" prefHeight="50.0" styleClass="refresh" stylesheets="@../styles/styles.css" text="Button">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>

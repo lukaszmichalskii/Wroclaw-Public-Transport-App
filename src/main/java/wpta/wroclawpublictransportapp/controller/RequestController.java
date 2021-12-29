@@ -29,7 +29,7 @@ public class RequestController implements Initializable {
     private ObservableList<JFXCheckBox> buses;
     private final Map<String, List<String>> parameters;
     private final LocationDataProvider locationDataProvider;
-    private Integer refreshTime = 10000; // default refresh time
+    private Integer refreshTime;
 
     public RequestController() {
         locationDataProvider = new LocationDataProvider();

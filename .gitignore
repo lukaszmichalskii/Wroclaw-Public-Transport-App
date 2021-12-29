@@ -1,3 +1,6 @@
+# sensitive data storage
+src/main/java/wpta/wroclawpublictransportapp/SensitiveDataStorage.java
+
 # Test files
 test_geojson.txt
 

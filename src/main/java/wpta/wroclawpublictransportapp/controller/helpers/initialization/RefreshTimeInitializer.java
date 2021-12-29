@@ -15,6 +15,7 @@ public class RefreshTimeInitializer implements ComboBoxInitializer {
     @Override
     public void init(ComboBox<String> options) {
         options.getItems().addAll(refreshOptions);
+        options.getSelectionModel().selectFirst();
     }
 
     private void configureRefreshTimeOptions() {

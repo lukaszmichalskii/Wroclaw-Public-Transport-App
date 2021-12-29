@@ -33,11 +33,6 @@ public class SettingsController implements Initializable {
         requestController.setRefreshTime(time);
     }
 
-    @FXML
-    private void cancel() {
-        SectionLoader.load("gui/request-form.fxml", appInterface, BorderPaneLocation.LEFT);
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initRefreshOptions();

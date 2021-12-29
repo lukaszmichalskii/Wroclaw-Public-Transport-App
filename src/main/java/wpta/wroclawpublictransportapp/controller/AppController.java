@@ -13,7 +13,6 @@ import wpta.wroclawpublictransportapp.application.map.LocationSearch;
 import wpta.wroclawpublictransportapp.application.map.MapViewProvider;
 import wpta.wroclawpublictransportapp.controller.helpers.initialization.ComboBoxInitializer;
 import wpta.wroclawpublictransportapp.controller.helpers.initialization.LineNumberInitialization;
-import wpta.wroclawpublictransportapp.controller.helpers.initialization.TransportTypeChoiceInitialization;
 import wpta.wroclawpublictransportapp.controller.helpers.loader.BorderPaneLocation;
 import wpta.wroclawpublictransportapp.controller.helpers.loader.SectionLoader;
 
@@ -60,21 +59,15 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    private void settings() {
-        SettingsController settingsController = (SettingsController) SectionLoader.load("gui/settings.fxml", appInterface, BorderPaneLocation.LEFT);
-        settingsController.setParent(appInterface);
-    }
-
-    @FXML
     private void refresh() {
         MapViewProvider.getBrowser().navigation().reload();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        SectionLoader.load("gui/request-form.fxml", appInterface, BorderPaneLocation.LEFT);
+        SettingsController settingsController = (SettingsController) SectionLoader.load("gui/settings.fxml", appInterface, BorderPaneLocation.LEFT);
+        settingsController.setParent(appInterface);
         initMap();
-        initTransportTypeOptions();
     }
 
     /**
@@ -85,13 +78,13 @@ public class AppController implements Initializable {
         appInterface.setCenter(mapView);
     }
 
-    /**
-     * Init options of possible transport types
-     */
-    private void initTransportTypeOptions() {
-        ComboBoxInitializer initializer = new TransportTypeChoiceInitialization();
-        initializer.init(transportTypeChoice);
-    }
+//    /**
+//     * Init options of possible transport types
+//     */
+//    private void initTransportTypeOptions() {
+//        ComboBoxInitializer initializer = new TransportTypeChoiceInitialization();
+//        initializer.init(transportTypeChoice);
+//    }
 
     /**
      * Handling problems with managing content of line options based on transport choice
