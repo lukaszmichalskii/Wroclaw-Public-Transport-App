@@ -20,6 +20,10 @@ public class BusLinesInitializer implements ComboBoxInitializer {
 
     private void configureBusLines() {
         busLines = new ArrayList<>();
+
+        // lines represented by letters
+        busLines.addAll(List.of("A", "C", "D", "K", "N"));
+
         // lines 100 - 151
         for (int i = 100; i <= 151; i++) {
             busLines.add(String.valueOf(i));
