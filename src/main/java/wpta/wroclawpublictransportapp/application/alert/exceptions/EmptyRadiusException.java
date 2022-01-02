@@ -1,4 +1,4 @@
-package wpta.wroclawpublictransportapp.application.alert;
+package wpta.wroclawpublictransportapp.application.alert.exceptions;
 
 public class EmptyRadiusException extends Exception {
     public EmptyRadiusException(String errorMsg) {

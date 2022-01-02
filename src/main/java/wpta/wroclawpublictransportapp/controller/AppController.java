@@ -9,6 +9,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import wpta.wroclawpublictransportapp.application.map.LocationSearch;
 import wpta.wroclawpublictransportapp.application.map.MapViewProvider;
+import wpta.wroclawpublictransportapp.application.javascriptexecution.AreaDrawer;
+import wpta.wroclawpublictransportapp.application.javascriptexecution.Cleaner;
+import wpta.wroclawpublictransportapp.application.javascriptexecution.JavaScriptExecutor;
 import wpta.wroclawpublictransportapp.controller.helpers.loader.BorderPaneLocation;
 import wpta.wroclawpublictransportapp.controller.helpers.loader.SectionLoader;
 
@@ -59,8 +62,12 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    private void pickerView() {
+    private void vehiclesLocationsMapView() {
         SectionLoader.load("gui/request-form.fxml", appInterface, BorderPaneLocation.LEFT);
+        JavaScriptExecutor jsExecutor = new AreaDrawer(MapViewProvider.getBrowser(), null);
+        JavaScriptExecutor cleaner = new Cleaner(MapViewProvider.getBrowser());
+        jsExecutor.execute();
+        cleaner.execute();
     }
 
     @Override

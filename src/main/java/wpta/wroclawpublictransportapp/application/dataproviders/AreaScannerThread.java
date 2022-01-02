@@ -39,47 +39,17 @@ public class AreaScannerThread implements Runnable {
         thread.start();
     }
 
-    private void scan() throws IOException {
-        boolean found = false;
-        final String[] areaCenter = new String[1];
-        Double[] coords;
-        Document document = browser.mainFrame().flatMap(Frame::document).get();
-        document.findElementById("coordinates").ifPresent(address ->
-               areaCenter[0] = ((InputElement) address).value()
-        );
-
-        coords = coordinatesExtractor.extract(areaCenter[0]);
-        System.out.println(coords[0]+", "+coords[1]);
-        Coordinate center = new Coordinate(coords[0], coords[1]);
-        Coordinate tmp;
-        DistanceCalculator distanceCalculator = new DistanceCalculator();
-
+    private boolean scan() throws IOException {
+        Coordinate markedAreaCoords = getMarkedAreaCoordinates();
         JSONArray locations = downloader.download();
-        for (int i = 0; i < locations.length(); i++) {
-            double x = locations.getJSONObject(i).getDouble("x");
-            double y = locations.getJSONObject(i).getDouble("y");
-            System.out.println(x+", "+y);
-
-            tmp = new Coordinate(x,y);
-            double distance = distanceCalculator.calculateDistance(center, tmp);
-            System.out.println(distance+"/"+radius);
-            if (distance <= Double.parseDouble(radius)) {
-                found = true;
-                break;
-            }
-        }
-
-        if (found)
-            Platform.runLater(() -> AlertManager.throwInformation("Selected vehicle is in the designated area."));
-        else
-            Platform.runLater(() -> AlertManager.throwInformation("Vehicle not found in the designated area."));
+        return performCalculations(markedAreaCoords, locations, new DistanceCalculator());
     }
 
     @Override
     public void run() {
         while (flag == Flag.RUNNING) {
             try {
-                scan();
+                showStatement(scan());
                 stop();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -89,5 +59,36 @@ public class AreaScannerThread implements Runnable {
 
     public void stop() {
         flag = Flag.STOP;
+    }
+
+    private void showStatement(Boolean result) {
+        if (result)
+            Platform.runLater(() -> AlertManager.throwInformation("Selected vehicle is in the designated area."));
+        else
+            Platform.runLater(() -> AlertManager.throwInformation("Vehicle not found in the designated area."));
+    }
+
+    private Coordinate getMarkedAreaCoordinates() {
+        final String[] areaCenter = new String[1];
+        Document document = browser.mainFrame().flatMap(Frame::document).get();
+        document.findElementById("coordinates").ifPresent(address ->
+                areaCenter[0] = ((InputElement) address).value()
+        );
+
+        return coordinatesExtractor.extract(areaCenter[0]);
+    }
+
+    private boolean performCalculations(Coordinate target, JSONArray locations, DistanceCalculator calculationsEngine) {
+        Coordinate dummyCoords;
+
+        for (int i = 0; i < locations.length(); i++) {
+            dummyCoords = new Coordinate(locations.getJSONObject(i).getDouble("x"), locations.getJSONObject(i).getDouble("y"));
+            double distance = calculationsEngine.calculateDistance(target, dummyCoords);
+            if (distance <= Double.parseDouble(radius)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

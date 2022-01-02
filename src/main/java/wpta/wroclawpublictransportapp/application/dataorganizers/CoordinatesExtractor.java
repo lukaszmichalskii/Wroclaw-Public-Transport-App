@@ -1,10 +1,12 @@
 package wpta.wroclawpublictransportapp.application.dataorganizers;
 
+import wpta.wroclawpublictransportapp.application.distancecalc.Coordinate;
+
 /**
  * Class extract coordinates from javascript response
  */
 public class CoordinatesExtractor {
-    public Double[] extract(String result) {
+    public Coordinate extract(String result) {
         Double[] coordinates = new Double[2];
         StringBuilder tmp = new StringBuilder(result);
         tmp.deleteCharAt(tmp.length()-1);
@@ -16,6 +18,6 @@ public class CoordinatesExtractor {
         coordinates[0] = Double.valueOf(result.split(",")[0]);
         coordinates[1] = Double.valueOf(result.split(",")[1]);
 
-        return coordinates;
+        return new Coordinate(Double.valueOf(result.split(",")[0]), Double.valueOf(result.split(",")[1]));
     }
 }

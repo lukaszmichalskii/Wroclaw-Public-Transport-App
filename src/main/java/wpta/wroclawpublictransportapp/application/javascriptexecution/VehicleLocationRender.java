@@ -1,4 +1,4 @@
-package wpta.wroclawpublictransportapp.application.visualizator;
+package wpta.wroclawpublictransportapp.application.javascriptexecution;
 
 import com.teamdev.jxbrowser.browser.Browser;
 import com.teamdev.jxbrowser.dom.Document;
@@ -9,15 +9,21 @@ import com.teamdev.jxbrowser.frame.Frame;
 /**
  * Class execute JavaScript code to render objects on map view
  */
-public class VehicleLocationRender {
+public class VehicleLocationRender extends JavaScriptExecutor {
 
-    private final Browser browser;
+    private final String geoJSON;
 
-    public VehicleLocationRender(Browser browser) {
-        this.browser = browser;
+    public VehicleLocationRender(Browser browser, String geoJSON) {
+        super(browser);
+        this.geoJSON = geoJSON;
     }
 
-    public void visualize(String geoJSON) {
+    @Override
+    public void execute() {
+        visualize();
+    }
+
+    private void visualize() {
         Document document = browser.mainFrame().flatMap(Frame::document).get();
         Element searchElement = document.findElementById("render").get();
 

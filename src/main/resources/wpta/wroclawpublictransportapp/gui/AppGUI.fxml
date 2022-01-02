@@ -61,7 +61,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button fx:id="locationButton" contentDisplay="GRAPHIC_ONLY" layoutX="1068.0" layoutY="7.0" maxWidth="50.0" mnemonicParsing="false" onAction="#pickerView" prefHeight="50.0" styleClass="locations" stylesheets="@../styles/styles.css" text="Button">
+            <Button fx:id="locationButton" contentDisplay="GRAPHIC_ONLY" layoutX="1068.0" layoutY="7.0" maxWidth="50.0" mnemonicParsing="false" onAction="#vehiclesLocationsMapView" prefHeight="50.0" styleClass="locations" stylesheets="@../styles/styles.css" text="Button">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>

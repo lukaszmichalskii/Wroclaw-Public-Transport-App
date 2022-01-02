@@ -1,17 +1,19 @@
-﻿const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-let labelIndex = 0;
-let markers = [];
+﻿let markers = [];
 let markerClusterer;
 let circle;
 
+/**
+ * Main function for loading map and handle events
+ */
 function initMap() {
 	var map = new google.maps.Map(document.getElementById('map'), {
 		zoom: 13,
 		center: {lat: 51.1078479035455, lng: 17.038266655466643}
 	});
 
+	// draw circle ( mark area) in vehicle finder mode
 	google.maps.event.addListener(map, "click", (event) => {
-		addMarker(event.latLng, map);
+		drawCircle(event.latLng, map);
 	});
 
 	var geocoder = new google.maps.Geocoder();
@@ -24,10 +26,6 @@ function initMap() {
 		renderLocations(geocoder, map);
 	})
 
-	document.getElementById('search').addEventListener('click', function () {
-		drawArea(map);
-	})
-
 	document.getElementById('deleteMarkers').addEventListener('click', function () {
 		deleteMarkers();
 	})
@@ -37,30 +35,11 @@ function initMap() {
 	})
 }
 
-function deleteCircle(circle) {
-	circle.setMap(null);
-	circle = null;
-}
-
-function drawArea(resultsMap) {
-	var radius = document.getElementById('area').value;
-
-	if (circle != null) {
-		deleteCircle(circle);
-	}
-
-	circle = new google.maps.Circle({
-		strokeColor: "#FF0000",
-		strokeOpacity: 0.8,
-		strokeWeight: 2,
-		fillColor: "#FF0000",
-		fillOpacity: 0.35,
-		map: resultsMap,
-		center: {lat: 51.110744131381935, lng: 17.044514318387613},
-		radius: parseFloat(radius),
-	});
-}
-
+/**
+ * Section for rendering vehicle locations based on GeoJSON file
+ * @param geocoder class responsible for provide address matching
+ * @param resultsMap
+ */
 function renderLocations(geocoder, resultsMap) {
 	deleteMarkers();
 	var geoJSONStringRepresentation = document.getElementById('geoJSON').value;
@@ -83,6 +62,31 @@ function renderLocations(geocoder, resultsMap) {
 	markerClusterer = new MarkerClusterer(resultsMap, markers, {imagePath: imagePath});
 }
 
+function setMapOnAll(map) {
+	for (let i = 0; i < markers.length; i++) {
+		markers[i].setMap(map);
+	}
+}
+
+function hideMarkers() {
+	setMapOnAll(null);
+}
+
+function deleteMarkers() {
+	hideMarkers();
+	for (var i = 0; i < markers.length; i++) {
+		markerClusterer.removeMarker(markers[i]);
+	}
+	markers = [];
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+
+/**
+ * Function defines the logic of searching for desired address
+ * @param geocoder
+ * @param resultsMap
+ */
 function geocodeAddress(geocoder, resultsMap) {
 	var address = document.getElementById('address').value;
 	geocoder.geocode({'address': address}, function(results, status) {
@@ -98,7 +102,14 @@ function geocodeAddress(geocoder, resultsMap) {
 	});
 }
 
-function addMarker(location, resultsMap) {
+//---------------------------------------------------------------------------------------------------------------------
+
+/**
+ * Function mark area based on user input (click on map in vehicle finder app mode)
+ * @param location
+ * @param resultsMap
+ */
+function drawCircle(location, resultsMap) {
 	var radius = document.getElementById('radius').value;
 	// var radius = 1000;
 	document.getElementById("coordinates").value = location;
@@ -119,21 +130,7 @@ function addMarker(location, resultsMap) {
 	});
 }
 
-function setMapOnAll(map) {
-	for (let i = 0; i < markers.length; i++) {
-		markers[i].setMap(map);
-	}
-}
-
-function hideMarkers() {
-	setMapOnAll(null);
-}
-
-function deleteMarkers() {
-	hideMarkers();
-	for (var i = 0; i < markers.length; i++) {
-		markerClusterer.removeMarker(markers[i]);
-	}
-	markers = [];
-
+function deleteCircle(circle) {
+	circle.setMap(null);
+	circle = null;
 }

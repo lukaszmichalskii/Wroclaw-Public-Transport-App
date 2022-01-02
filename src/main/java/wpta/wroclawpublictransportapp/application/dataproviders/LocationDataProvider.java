@@ -1,7 +1,7 @@
 package wpta.wroclawpublictransportapp.application.dataproviders;
 
 import wpta.wroclawpublictransportapp.application.alert.AlertManager;
-import wpta.wroclawpublictransportapp.application.alert.EmptyRequestException;
+import wpta.wroclawpublictransportapp.application.alert.exceptions.EmptyRequestException;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -15,7 +15,7 @@ public class LocationDataProvider {
 
     private final APISettings apiSettings;
     private final URLRequestEncoder urlRequestEncoder;
-    private DownloadThread downloadThread = null;
+    private static DownloadThread downloadThread = null;
 
     public LocationDataProvider() {
         apiSettings = new APISettings();
@@ -39,7 +39,8 @@ public class LocationDataProvider {
         }
     }
 
-    public void stopProcess() {
-        downloadThread.stop();
+    public static void stopProcess() {
+        if (downloadThread != null)
+            downloadThread.stop();
     }
 }

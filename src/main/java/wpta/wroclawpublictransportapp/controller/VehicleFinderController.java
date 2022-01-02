@@ -7,7 +7,9 @@ import javafx.scene.control.TextField;
 import wpta.wroclawpublictransportapp.application.alert.AlertManager;
 import wpta.wroclawpublictransportapp.application.dataproviders.VehicleFinder;
 import wpta.wroclawpublictransportapp.application.map.MapViewProvider;
-import wpta.wroclawpublictransportapp.application.visualizator.AreaDrawer;
+import wpta.wroclawpublictransportapp.application.validation.GUIFormValidation;
+import wpta.wroclawpublictransportapp.application.javascriptexecution.AreaDrawer;
+import wpta.wroclawpublictransportapp.application.javascriptexecution.JavaScriptExecutor;
 import wpta.wroclawpublictransportapp.controller.helpers.initialization.ComboBoxInitializer;
 import wpta.wroclawpublictransportapp.controller.helpers.initialization.LineNumberInitialization;
 import wpta.wroclawpublictransportapp.controller.helpers.initialization.TransportTypeChoiceInitialization;
@@ -34,18 +36,25 @@ public class VehicleFinderController implements Initializable {
 
     @FXML
     private void scan() {
-        if (radiusTextField.getText().isEmpty())
+        GUIFormValidation response = validateRadius(radiusTextField.getText());
+        if (response == GUIFormValidation.EMPTY)
             AlertManager.throwError("Radius not provided");
-        else if (validateRadius(radiusTextField.getText()))
+        else if (response == GUIFormValidation.CORRECT)
             vehicleFinder.scan(transportTypeChoice.getValue(), lineNumberChoice.getValue(), radiusTextField.getText());
+        else
+            AlertManager.throwError("Invalid radius format.");
     }
 
     @FXML
     private void apply() {
-        if (validateRadius(radiusTextField.getText())) {
-            AreaDrawer areaDrawer = new AreaDrawer(MapViewProvider.getBrowser());
-            areaDrawer.draw(Double.valueOf(radiusTextField.getText()));
-        }
+        GUIFormValidation response = validateRadius(radiusTextField.getText());
+        if (response == GUIFormValidation.EMPTY)
+            AlertManager.throwError("Radius not provided");
+        else if (response == GUIFormValidation.CORRECT) {
+            JavaScriptExecutor jsExecutor = new AreaDrawer(MapViewProvider.getBrowser(), Double.valueOf(radiusTextField.getText()));
+            jsExecutor.execute();
+        } else
+            AlertManager.throwError("Invalid radius format.");
     }
 
     @Override
@@ -82,13 +91,15 @@ public class VehicleFinderController implements Initializable {
         initializer.init(transportTypeChoice);
     }
 
-    private boolean validateRadius(String radius) {
+    private GUIFormValidation validateRadius(String radius) {
+        if (radius.isEmpty())
+            return GUIFormValidation.EMPTY;
+
         try {
             Double.parseDouble(radius);
-            return true;
+            return GUIFormValidation.CORRECT;
         } catch (Exception e) {
-            AlertManager.throwError("Invalid radius format.");
+            return GUIFormValidation.INVALID;
         }
-        return false;
     }
 }

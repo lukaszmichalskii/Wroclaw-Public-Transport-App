@@ -1,14 +1,22 @@
 package wpta.wroclawpublictransportapp.application.distancecalc;
 
 /**
- * Dummy model of coordinate form
+ * Dummy model of coordinate representation in system
  */
 public class Coordinate {
-    public double lat;
-    public double lng;
+    private Double lat;
+    private Double lng;
 
-    public Coordinate(double lat, double lng) {
+    public Coordinate(Double lat, Double lng) {
         this.lat = lat;
         this.lng = lng;
+    }
+
+    public Double getLat() {
+        return lat;
+    }
+
+    public Double getLng() {
+        return lng;
     }
 }

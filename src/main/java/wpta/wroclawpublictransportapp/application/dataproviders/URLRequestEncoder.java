@@ -1,6 +1,6 @@
 package wpta.wroclawpublictransportapp.application.dataproviders;
 
-import wpta.wroclawpublictransportapp.application.alert.EmptyRequestException;
+import wpta.wroclawpublictransportapp.application.alert.exceptions.EmptyRequestException;
 
 import java.util.List;
 import java.util.Map;
