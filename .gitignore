@@ -1,6 +1,9 @@
 # sensitive data storage
 src/main/java/wpta/wroclawpublictransportapp/SensitiveDataStorage.java
 
+# META-INF
+src/main/java/META-INF
+
 # target folder
 target
 

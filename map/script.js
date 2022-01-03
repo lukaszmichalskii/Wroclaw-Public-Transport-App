@@ -7,7 +7,7 @@ let circle;
  */
 function initMap() {
 	var map = new google.maps.Map(document.getElementById('map'), {
-		zoom: 13,
+		zoom: 12,
 		center: {lat: 51.1078479035455, lng: 17.038266655466643}
 	});
 

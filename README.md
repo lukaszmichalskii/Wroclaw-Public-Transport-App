@@ -7,8 +7,7 @@ is in the marked area ([the Heaviside formula](https://planetmath.org/heavisidef
 ### Features
 The main function of the application is the same as on the MPK website, see the desired vehicles (their locations) on the map extended with marker clustering
 To do it users have to pick desired transport type, line number and set refresh time
-(refresh time define time delta between updating vehicles locations) and simply click <em>Run</em> button. Moreover 
-map view provides few options known from Google Maps platform like: street view, searching addresses (put text into search box) and many more.
+(refresh time define time delta between updating vehicles locations) and simply click <em>Run</em> button.  Moreover, map view provides a few options known from the Google Maps platform like street view, searching addresses (put text into the search box), and many more.
 
 Usage instruction for checking if vehicle is in marked location: 
 1. Set radius - this will set the length of the segment expressed in meters.

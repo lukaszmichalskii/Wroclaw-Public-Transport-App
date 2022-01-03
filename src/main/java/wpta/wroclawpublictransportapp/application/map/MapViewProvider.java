@@ -15,7 +15,7 @@ public class MapViewProvider {
 
     public MapViewProvider() {
         browser = AppEngine.getEngine().newBrowser();
-        this.HTMLMapViewFilepath = "map\\map.html";
+        this.HTMLMapViewFilepath = "D:\\PWr\\Jezyki programowania\\laboratorium\\WroclawPublicTransportApp\\map\\map.html";
     }
 
     public static Browser getBrowser() {
