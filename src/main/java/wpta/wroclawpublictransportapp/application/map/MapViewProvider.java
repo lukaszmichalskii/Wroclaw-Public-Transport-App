@@ -2,9 +2,10 @@ package wpta.wroclawpublictransportapp.application.map;
 
 import com.teamdev.jxbrowser.browser.Browser;
 import com.teamdev.jxbrowser.view.javafx.BrowserView;
+import wpta.wroclawpublictransportapp.Main;
 import wpta.wroclawpublictransportapp.application.engine.AppEngine;
 
-import java.io.File;
+import java.util.Objects;
 
 /**
  * Class responsible for provide mapView from Google Map sample map.
@@ -15,7 +16,7 @@ public class MapViewProvider {
 
     public MapViewProvider() {
         browser = AppEngine.getEngine().newBrowser();
-        this.HTMLMapViewFilepath = "D:\\PWr\\Jezyki programowania\\laboratorium\\WroclawPublicTransportApp\\map\\map.html";
+        this.HTMLMapViewFilepath = "map/map.html";
     }
 
     public static Browser getBrowser() {
@@ -27,17 +28,7 @@ public class MapViewProvider {
     }
 
     private BrowserView loadMapView() {
-        File mapViewFile = getMapViewFile(HTMLMapViewFilepath);
-        String mapViewAbsolutePath = getMapViewAbsolutePath(mapViewFile);
-        browser.navigation().loadUrl(mapViewAbsolutePath);
+        browser.navigation().loadUrl(Objects.requireNonNull(Main.class.getResource(HTMLMapViewFilepath)).toExternalForm());
         return BrowserView.newInstance(browser);
-    }
-
-    private String getMapViewAbsolutePath(File mapView) {
-        return mapView.getAbsolutePath();
-    }
-
-    private File getMapViewFile(String HTMLMapViewFilepath) {
-        return new File(HTMLMapViewFilepath);
     }
 }
